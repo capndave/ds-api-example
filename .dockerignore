@@ -1,0 +1,7 @@
+Dockerfile
+.git
+.vs
+node_modules
+*.swp
+README.md
+tests
