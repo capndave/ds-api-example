@@ -1,0 +1,25 @@
+{
+  "name": "ds-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "nodemon src/index.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/tcaddev/ds-api_2020.git"
+  },
+  "author": "David Thompson",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/tcaddev/ds-api_2020#readme",
+  "dependencies": {
+    "express": "4.17.1",
+    "mssql": "6.0.1",
+    "winston": "3.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "2.0.2"
+  }
+}
