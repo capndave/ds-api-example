@@ -1,7 +1,7 @@
 const express = require('express')
 const sql = require('mssql')
-const logger = require('./logger/logger')
-const routes = require('./routes/routes')
+const logger = require('./logger')
+const routes = require('./routes')
 const { connectionPool } = require('./database/connectionPool')
 const loaders = require('./loaders')
 
