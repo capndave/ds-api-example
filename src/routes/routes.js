@@ -5,6 +5,13 @@ const propIdController = require('../controllers/propIdController')
 
 /* GET */
 
+app.get('/', (req, res) => {
+  res.send(`
+    <h1>TCAD ARBQ formal-server</h1>
+    <p>Try adding another keyword to your path. Like /appraisers,  perhaps</p>
+  `)
+})
+
 router.get('/propIds/:panel', propIdController.getPropIdsInPanel)
 
 router.get('/getBoardMembers', (req, res) => {

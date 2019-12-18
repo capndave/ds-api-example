@@ -2,13 +2,13 @@ const express = require('express')
 const sql = require('mssql')
 const settings = require('./settings/settings.js')
 const logger = require('./logger/logger')
-const restRoutes = require('./routes/routes')
+const routes = require('./routes/routes')
 const { connectionPool } = require('./database/connectionPool')
 
 // Initialize Express //
 var app = express()
 
-// Optional. You will see this name in eg. 'ps' or 'top' command
+// Define process name for os, eg 'ps' or 'top' command //
 process.title = 'arbq-api'
 
 // Headers //
@@ -19,37 +19,27 @@ app.use((req, res, next) => {
     'Access-Control-Allow-Headers',
     'Origin, X-Requested-With, Content-Type, Accept'
   )
-  res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE')
+  res.header('Access-Control-Allow-Methods', 'GET, POST')
   next()
 })
 
-// Get REST route functions //
-app.use(
-  '/',
-  (req, res, next) => {
-    req.cp = connectionPool // pass connection pool
+// Map routes //
+app.use('/', (req, res, next) => {
+    req.cp = connectionPool // attach mssql connection pool to req
     next()
-  },
-  restRoutes
-)
+}, routes)
 
-// Allows you to parse body //
+// Facilitate body parsing //
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
-// Root route //
-app.get('/', (req, res) => {
-  res.send(
-    '<h1>TCAD ARBQ formal-server</h1><p>Try adding another keyword to your path. Like /appraisers,  perhaps</p>'
-  )
-})
-
+// Listen //
 const port = process.env.PORT
 app.listen(port, function() {
   logger.info(`\nApp listening on port ${port}`)
 })
 
-/* Export to use in testing */
+// Export for testing //
 module.exports = {
-  app // to test in isolation
+  app
 }
