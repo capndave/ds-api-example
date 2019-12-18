@@ -3,16 +3,13 @@ const logger = require('../logger/logger')
 // TODO: add controllers for each route
 const rootController = require('../controllers/rootController')
 const propIdController = require('../controllers/propIdController')
+const boardMemberController = require('../controllers/boardMemberController')
 
 /* GET */
 router.get('/', rootController)
-
-router.get('/propIds/:panel', propIdController.getPropIdsInPanel)
-
-router.get('/getBoardMembers', (req, res) => {
-  controllers.getBoardMembers
-  response.status(200).send('Hello World')
-})
+router.get('/getPropIdsInPanel/:panel', propIdController.getPropIdsInPanel)
+router.get('/getBoardMembers', boardMemberController.getBoardMembers)
+router.get('/getExpectedBoardMemberNamesAndSignatures', boardMemberController.getBoardMembers)
 
 router.get('/getAffidavitEntered', (req, res) => {
   controllers.getAffidavitEntered
@@ -20,12 +17,12 @@ router.get('/getAffidavitEntered', (req, res) => {
 })
 
 router.get('/getProtestYears', (req, res) => {
-  controllers.getAffidavitEntered
+  controllers.getProtestYears
   response.status(200).send('Hello World')
 })
 
 router.get('/getProtestData', (req, res) => {
-  controllers.getAffidavitEntered
+  controllers.getProtestData
  response.status(200).send('Hello World')
 })
 

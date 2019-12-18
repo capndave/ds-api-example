@@ -5,6 +5,9 @@ const logger = require('./logger/logger')
 const routes = require('./routes/routes')
 const { connectionPool } = require('./database/connectionPool')
 
+// Get env vars from .env file //
+require('dotenv').config()
+
 // Initialize Express //
 var app = express()
 
