@@ -5,6 +5,7 @@ const logger = require('../logger/logger')
 // Set up SQL connection pool //
 module.exports = async function() {
   try {
+    console.log(config)
     let pool: any = await sql.connect(config)
     return await pool.connect()
   } catch (error) {

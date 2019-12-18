@@ -10,10 +10,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
-const sql = require('mssql');
 const logger = require('./logger/logger');
 const routes = require('./routes/routes');
-const { connectionPool } = require('./mssql');
 const loaders = require('./loaders/loaders');
 function startApp() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -25,7 +23,7 @@ function startApp() {
         loaders(app);
         // Map routes //
         app.use('/', (req, res, next) => {
-            req.cp = connectionPool; // attach mssql connection pool to req
+            // req.cp = connectionPool // attach mssql connection pool to req
             next();
         }, routes);
         // Listen //

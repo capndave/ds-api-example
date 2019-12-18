@@ -2,7 +2,7 @@
 import express = require('express')
 
 exports.getBoardMembers = function(req: express.Request, res: express.Response) {
-    res.status(200).send(panel: Number)
+    // res.status(200).send(panel: Number)
 }
 
 exports.getExpectedBoardMemberNamesAndSignatures = function(req, res) {

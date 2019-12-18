@@ -1,8 +1,6 @@
 import express = require('express')
-const sql = require('mssql')
 const logger = require('./logger/logger')
 const routes = require('./routes/routes')
-const { connectionPool } = require('./mssql')
 const loaders = require('./loaders/loaders')
 
 async function startApp() {
@@ -20,7 +18,7 @@ async function startApp() {
   app.use(
     '/',
     (req: any, res: express.Response, next) => {
-      req.cp = connectionPool // attach mssql connection pool to req
+      // req.cp = connectionPool // attach mssql connection pool to req
       next()
     },
     routes
