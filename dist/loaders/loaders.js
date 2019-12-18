@@ -2,9 +2,9 @@ const environmentLoader = require('./environment');
 const expressLoader = require('./express');
 const logger = require('../logger');
 module.exports = function (app) {
-    // environmentLoader
+    environmentLoader();
+    logger.info('Environment variables loaded');
     expressLoader(app);
-    console.log('Express settings loaded');
-    return app;
+    logger.info('Express settings loaded');
 };
 //# sourceMappingURL=loaders.js.map

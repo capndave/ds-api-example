@@ -11,7 +11,5 @@ module.exports = function expressLoader(app) {
     // Facilitate body parsing //
     app.use(express.urlencoded({ extended: false }));
     app.use(express.json());
-    // Return express app //
-    return app;
 };
 //# sourceMappingURL=express.js.map

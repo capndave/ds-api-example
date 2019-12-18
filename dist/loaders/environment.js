@@ -1,2 +1,4 @@
-module.exports = require('dotenv').config;
+module.exports = function () {
+    require('dotenv').config();
+};
 //# sourceMappingURL=environment.js.map

@@ -18,7 +18,4 @@ module.exports = function expressLoader(app) {
   app.use(express.urlencoded({ extended: false }))
   app.use(express.json())
 
-  // Return express app //
-  return app
-
 }
