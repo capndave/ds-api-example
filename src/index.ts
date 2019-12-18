@@ -1,20 +1,18 @@
-const express = require('express')
+import express = require('express')
 const sql = require('mssql')
 const logger = require('./logger/logger')
 const routes = require('./routes/routes')
 const { connectionPool } = require('./database/connectionPool')
 const loaders = require('./loaders/loaders')
 
-// Get env vars from .env file //
-require('dotenv').config()
-
-// Define process name for os, eg 'ps' or 'top' command //
-process.title = 'arbq-api'
 
 async function startApp() {
 
+  // Define process name for os, eg 'ps' or 'top' command //
+  process.title = 'arbq-api'
+
   // Initialize Express //
-  const app = express()
+  const app: express.Application = express()
 
   // Load environment and express settings
   loaders(app)
@@ -22,7 +20,7 @@ async function startApp() {
   // Map routes //
   app.use(
     '/',
-    (req, res, next) => {
+    (req: any, res: any, next) => {
       req.cp = connectionPool // attach mssql connection pool to req
       next()
     },
@@ -30,9 +28,9 @@ async function startApp() {
   )
 
   // Listen //
-  const port = process.env.PORT
+  const port: string = process.env.PORT
   app.listen(port, function() {
-    logger.info(`\nApp listening on port ${port}`)
+    logger.info(`App listening on port ${port}`)
   })
 }
 

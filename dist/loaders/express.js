@@ -1,4 +1,6 @@
-const express = require('express');
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express = require("express");
 module.exports = function expressLoader(app) {
     // Headers //
     app.use((req, res, next) => {

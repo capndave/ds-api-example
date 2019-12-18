@@ -1,9 +1,9 @@
-const express = require('express')
+import express = require('express')
 
-module.exports = function expressLoader(app) {
+module.exports = function expressLoader(app: express.Application) {
 
   // Headers //
-  app.use((req, res, next) => {
+  app.use((req: express.Request, res: express.Response, next) => {
     res.header('Access-Control-Allow-Origin', '*')
     res.header('Access-Control-Request-Method', '*')
     res.header(
