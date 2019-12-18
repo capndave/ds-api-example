@@ -13,7 +13,7 @@ const express = require("express");
 const sql = require('mssql');
 const logger = require('./logger/logger');
 const routes = require('./routes/routes');
-const { connectionPool } = require('./database/connectionPool');
+const { connectionPool } = require('./mssql');
 const loaders = require('./loaders/loaders');
 function startApp() {
     return __awaiter(this, void 0, void 0, function* () {

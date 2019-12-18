@@ -1,6 +1,7 @@
-//TODO: Finish boardMemberController
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.getBoardMembers = function (req, res) {
-    res.status(200).send(panel);
+    res.status(200).send(panel, Number);
 };
 exports.getExpectedBoardMemberNamesAndSignatures = function (req, res) {
     res.status(200).send(panel);
