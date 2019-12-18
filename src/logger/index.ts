@@ -11,17 +11,17 @@ if (!fs.existsSync(logDir)) {
 
 module.exports = winston.createLogger({
   level: 'info',
-//   format: winston.format.json(),
+  format: winston.format.json(),
   // defaultMeta: { service: 'user-service' },
-  format: winston.format.combine(
-    // winston.format.label({label: '[my-label]'}),
-    winston.format.timestamp({
-      format: 'YYYY-MM-DD HH:mm:ss',
-    }),
-    winston.format.printf(
-      info => `${info.timestamp} - ${info.level} - ${info.message}`
-    )
-  ),
+  // format: winston.format.combine(
+  //   // winston.format.label({label: '[my-label]'}),
+  //   winston.format.timestamp({
+  //     format: 'YYYY-MM-DD HH:mm:ss',
+  //   }),
+  //   winston.format.printf(
+  //     info => `${info.timestamp} - ${info.level} - ${info.message}`
+  //   )
+  // ),
   transports: [
     // Output to console
     new winston.transports.Console({
