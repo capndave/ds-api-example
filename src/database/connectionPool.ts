@@ -1,5 +1,5 @@
 const sql = require('mssql')
-const settings = require('../settings/settings.js')
+const settings = require('../settings/settings')
 const logger = require('../logger/logger')
 
 // Set up SQL connection pool //
