@@ -11,9 +11,7 @@ const sql = require('mssql')
   * @alias module:getPropIdsInPanelFromDatabase
   */
 async function getPropIdsInPanelFromDatabase(
-    panel: number,
-    pool: any
-  ): Promise<[{ prop_id: number }]> {
+{ panel, pool }: { panel: number; pool: any; }  ): Promise<[{ prop_id: number }]> {
   try {
     return await pool
       .request()
