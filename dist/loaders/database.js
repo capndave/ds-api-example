@@ -14,12 +14,10 @@ const logger = require('../logger/logger');
 module.exports = function () {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            console.log(config);
-            let pool = yield sql.connect(config);
-            return yield pool.connect();
+            return yield sql.connect(config);
         }
         catch (error) {
-            logger.error(`Error creating connection pool in mssql.js [11]: ${error}`);
+            logger.error(`Error creating connection pool in mssql.js [10]: ${error}`);
         }
     });
 };
