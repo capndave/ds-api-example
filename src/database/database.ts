@@ -16,7 +16,7 @@ module.exports = {
       logger.info('SQL connection established')
       return 'SQL connection established'
     } catch (error) {
-      logger.error(`Error creating connection pool in mssql.js [15]: ${error}`)
+      logger.error(`Error creating connection pool in mssql.js [19]: ${error}`)
     }
   },
   /**
