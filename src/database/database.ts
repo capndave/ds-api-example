@@ -20,7 +20,7 @@ module.exports = {
     }
   },
   /**
-   * Get connection pool
+   * Return connection pool
    * @function
    * @returns { object } a sql connection pool
    */
