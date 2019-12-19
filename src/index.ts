@@ -16,13 +16,13 @@ async function startApp() {
   loaders(app)
   
   // Connect to database
-  await database.connect()
+  const pool = await database()
+
+  // Add connection to app as property
+  app.locals.pool = pool
 
   // Map routes
-  app.use('/', (req: any, res: express.Response, next) => {
-      req.pool = database.get() // attach connection pool to request object
-      next()
-  }, routes)
+  app.use('/', routes)
 
   // Listen
   const port: string = process.env.PORT

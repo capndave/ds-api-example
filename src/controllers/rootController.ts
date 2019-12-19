@@ -4,7 +4,7 @@ const logger = require('../logger/logger')
 
 module.exports = function(req, res) {
   const pathToHtml = path.join(__dirname, '../pages/root.html')
-  fs.readFile(pathToHtml, (err, data) => {
+  fs.readFile(pathToHtml, (err: string, data: string) => {
     if (err) logger.error(`Error reading html file in rootController[8]: ${e}`)
     res.write(data)
     res.end()

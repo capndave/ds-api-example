@@ -2,29 +2,18 @@ const sql = require('mssql')
 const { config } = require('../settings/settings')
 const logger = require('../logger/logger')
 
-let connection: any
-
-module.exports = {
-  /**
-   *  Set up SQL connection pool
-   *  @function
-   *  @returns { string } a string indicating
-   */
-  connect: async function() {
+/**
+ *  Set up SQL connection pool
+ *  @function
+ *  @returns { string } a string indicating
+ */
+module.exports = async function() {
     try {
-      connection = await sql.connect(config)
+      const connection = await sql.connect(config)
       logger.info('SQL connection established')
-      return 'SQL connection established'
+      return connection
     } catch (error) {
-      logger.error(`Error creating connection pool in mssql.js [19]: ${error}`)
+      logger.error(`Error creating connection pool in mssql.js [16]: ${error}`)
     }
-  },
-  /**
-   * Return connection pool
-   * @function
-   * @returns { object } a sql connection pool
-   */
-  get: function() {
-    return connection
   }
 }
