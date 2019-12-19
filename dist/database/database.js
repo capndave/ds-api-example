@@ -21,6 +21,7 @@ module.exports = {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 connection = yield sql.connect(config);
+                logger.info('SQL connection established');
                 return 'SQL connection established';
             }
             catch (error) {

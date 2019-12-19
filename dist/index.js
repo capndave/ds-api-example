@@ -13,20 +13,23 @@ const express = require("express");
 const logger = require('./logger/logger');
 const routes = require('./routes/routes');
 const loaders = require('./loaders/loaders');
+const database = require('./database/database');
 function startApp() {
     return __awaiter(this, void 0, void 0, function* () {
-        // Define process name for os, eg 'ps' or 'top' command //
+        // Define process name for os, eg 'ps' or 'top' command
         process.title = 'arbq-api';
-        // Initialize Express //
+        // Initialize Express
         const app = express();
         // Load environment and express settings
         loaders(app);
-        // Map routes //
+        // Connect to database
+        yield database.connect();
+        // Map routes
         app.use('/', (req, res, next) => {
-            // req.cp = connectionPool // attach mssql connection pool to req
+            req.pool = database.get(); // attach connection pool to request object
             next();
         }, routes);
-        // Listen //
+        // Listen
         const port = process.env.PORT;
         app.listen(port, function () {
             logger.info(`App listening on port ${port}`);
