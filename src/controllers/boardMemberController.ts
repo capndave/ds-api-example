@@ -21,7 +21,7 @@ exports.getBoardMembers = async function(
   res: express.Response
 ) {
   const pool: any = req.app.locals.pool
-  const { recordset }: any = await getBoardMembersFromDatabase(pool)
+  const { recordset }: any = await getBoardMembersFromDatabase.all(pool)
   res.send(recordset).status(200)
 }
 
@@ -37,13 +37,13 @@ exports.getBoardMembers = async function(
  * @param { express.Request } req
  * @param { express.Response } res
  */
-exports.getExpectedBoardMemberNamesAndSignatures = function(
+exports.getBoardMemberNamesAndSignaturesForPanel = async function(
   req: express.Request,
   res: express.Response
 ) {
   const panel: number = parseInt(req.params.panel)
   const pool: any = req.app.locals.pool
-  const { recordset }: any = await getBoardMembersForPanelFromDatabase(panel, pool)
+  const { recordset }: any = await getBoardMembersFromDatabase.forPanel(panel, pool)
   res.send(recordset).status(200)
 }
 

@@ -9,7 +9,7 @@ const boardMemberController = require('../controllers/boardMemberController')
 router.get('/', rootController)
 router.get('/getPropIdsInPanel/:panel', propIdController.getPropIdsInPanel)
 router.get('/board/', boardMemberController.getBoardMembers)
-router.get('/board/:panel', boardMemberController.getBoardMembersForPanel)
+router.get('/board/:panel', boardMemberController.getBoardMemberNamesAndSignaturesForPanel)
 // router.get('/getExpectedBoardMemberNamesAndSignatures', boardMemberController.getBoardMembers)
 
 // router.get('/getAffidavitEntered', (req, res) => {
