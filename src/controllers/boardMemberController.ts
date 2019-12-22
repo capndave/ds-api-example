@@ -1,6 +1,7 @@
 //TODO: Finish boardMemberController
 import express = require('express')
 const getBoardMembersFromDatabase = require('../services/getBoardMembersFromDatabase')
+import { IBoardMember } from '../interfaces'
 
 /**
  * A module for working with board member data.
@@ -43,8 +44,11 @@ exports.getBoardMemberNamesAndSignaturesForPanel = async function(
 ) {
   const panel: number = parseInt(req.params.panel)
   const pool: any = req.app.locals.pool
-  const { recordset }: any = await getBoardMembersFromDatabase.forPanel(panel, pool)
+  const { recordset }: { recordset: IBoardMember[] } = await getBoardMembersFromDatabase.forPanel(panel, pool)
+  const boardMemberIds: number[] = recordset.map(boardMember => boardMember.board_member_id)
+  const jpg: any = await getBoardMemberSignaturesFromFileSystem(boardMemberIds)
   res.send(recordset).status(200)
+
 }
 
 exports.postBoardMemberNamesAndSignatures = function(req, res) {
