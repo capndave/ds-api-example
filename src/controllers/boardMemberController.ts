@@ -1,6 +1,7 @@
 //TODO: Finish boardMemberController
 import express = require('express')
 const getBoardMembersFromDatabase = require('../services/getBoardMembersFromDatabase')
+const { getBoardMemberSignaturesFromFileSystem } = require('../services/getBoardMemberSignaturesFromFileSystem')
 import { IBoardMember } from '../interfaces'
 
 /**
@@ -46,9 +47,14 @@ exports.getBoardMemberNamesAndSignaturesForPanel = async function(
   const pool: any = req.app.locals.pool
   const { recordset }: { recordset: IBoardMember[] } = await getBoardMembersFromDatabase.forPanel(panel, pool)
   const boardMemberIds: number[] = recordset.map(boardMember => boardMember.board_member_id)
-  const jpg: any = await getBoardMemberSignaturesFromFileSystem(boardMemberIds)
-  res.send(recordset).status(200)
-
+  const signatureBuffers: Buffer[] = await getBoardMemberSignaturesFromFileSystem(boardMemberIds)
+  const boardMembers = recordset.map(({full_name}, i) => {
+    return {
+        full_name,
+        signature: signatureBuffers[i]
+    }
+  })
+  res.send(boardMembers).status(200)
 }
 
 exports.postBoardMemberNamesAndSignatures = function(req, res) {
