@@ -1,6 +1,6 @@
-const rootController = require('../../src/controllers/rootController')
-const { createRequest, createResponse } = require('node-mocks-http')
-const { EventEmitter } = require('events') // to mock response
+import rootController from '../../src/controllers/rootController'
+import { createRequest, createResponse } from 'node-mocks-http'
+import { EventEmitter } from 'events' // to mock response
 
 describe('the rootController function', () => {
 

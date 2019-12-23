@@ -1,4 +1,5 @@
 'use strict'
+export {} // Tells typescript to treat required modules as locals
 const fs = require('fs')
 const winston = require('winston')
 const logDir = './logs/'

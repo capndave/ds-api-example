@@ -34,8 +34,8 @@ exports.getBoardMembers = async function(
  * gets the connection pool from the request object,
  * gets data from the getExpectedBoardMemberNames service,
  * get signature data from the getExpectedBoardMemberSignatures service,
- * assembles names and signatures into a data object
- * and sends data with the response object
+ * assembles names and signatures into a boardMembers object
+ * and sends boardMembers data with the response object
  * @async
  * @method
  * @param { express.Request } req

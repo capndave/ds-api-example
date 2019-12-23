@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const logger = require('../logger/logger')
 // TODO: add controllers for each route
-const rootController = require('../controllers/rootController')
+import rootController from '../controllers/rootController'
 const propIdController = require('../controllers/propIdController')
 const boardMemberController = require('../controllers/boardMemberController')
 
