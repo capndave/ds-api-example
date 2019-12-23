@@ -1,9 +1,8 @@
-const logger = require('../logger/logger'
+export {} // Tell typescript to recognize imported modules as in this scope
+const logger = require('../../logger/logger')
 const fs = require('fs')
 const path = require('path')
-
-// Declare Promise for typescript
-declare var Promise: PromiseConstructorLike
+import BoardMember from '../../models/boardMember.model'
 
 /**
  * A module for fetching board member signatures from the file system.
@@ -17,7 +16,7 @@ declare var Promise: PromiseConstructorLike
  * @returns { string } filePath
  */
 function getFileName(fileId: number): string {
-  const signatureDirectory: string = path.join(__dirname, `../../../signatures`)
+  const signatureDirectory: string = path.join(__dirname, `../../../../signatures`)
   const fileName: string = `signature_${fileId}.jpg`
   return path.join(signatureDirectory, fileName)
 }

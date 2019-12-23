@@ -1,8 +1,10 @@
 //TODO: Finish boardMemberController
 import express = require('express')
-const getBoardMembersFromDatabase = require('../services/getBoardMembersFromDatabase')
-const { getBoardMemberSignaturesFromFileSystem } = require('../services/getBoardMemberSignaturesFromFileSystem')
+const getBoardMembersFromDatabase = require('../services/board/getBoardMembersFromDatabase')
+const { getBoardMemberSignaturesFromFileSystem } = require('../services/board/getBoardMemberSignaturesFromFileSystem')
+import { addSignatureValuesToObjectsInArray } from '../services/board/addSignatureValuesToObjectsInArray'
 import { IBoardMember } from '../interfaces'
+import { BoardMember } from '../models/board/boardMember.model'
 
 /**
  * A module for working with board member data.
@@ -45,15 +47,10 @@ exports.getBoardMemberNamesAndSignaturesForPanel = async function(
 ) {
   const panel: number = parseInt(req.params.panel)
   const pool: any = req.app.locals.pool
-  const { recordset }: { recordset: IBoardMember[] } = await getBoardMembersFromDatabase.forPanel(panel, pool)
+  const { recordset }: { recordset: BoardMember[] } = await getBoardMembersFromDatabase.forPanel(panel, pool)
   const boardMemberIds: number[] = recordset.map(boardMember => boardMember.board_member_id)
-  const signatureBuffers: Buffer[] = await getBoardMemberSignaturesFromFileSystem(boardMemberIds)
-  const boardMembers = recordset.map(({full_name}, i) => {
-    return {
-        full_name,
-        signature: signatureBuffers[i]
-    }
-  })
+  const signatures: Buffer[] = await getBoardMemberSignaturesFromFileSystem(boardMemberIds)
+  const boardMembers: BoardMember[] = addSignatureValuesToObjectsInArray(recordset, signatures)
   res.send(boardMembers).status(200)
 }
 
