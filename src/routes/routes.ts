@@ -8,9 +8,11 @@ const protestController = require('../controllers/protestController')
 
 /* GET */
 router.get('/', rootController)
-router.get('/panel/propIds/:panel', propIdController.getPropIdsInPanel)
-router.get('/board/', boardMemberController.getBoardMembers)
-router.get('/board/:panel', boardMemberController.getBoardMemberNamesAndSignaturesForPanel)
+router.get('/panel/properties/:panel', propIdController.getPropIdsInPanel)
+router.get('/board/members', boardMemberController.getBoardMembers)
+router.get('/board/member/:panel', boardMemberController.getBoardMemberNamesAndSignaturesForPanel)
+router.post('/board/members', boardMemberController.postBoardMemberNamesAndSignatures)
+
 // router.get('/getExpectedBoardMemberNamesAndSignatures', boardMemberController.getBoardMembers)
 
 // router.get('/getAffidavitEntered', (req, res) => {
@@ -28,10 +30,6 @@ router.get('/protest/data/:propId', protestController.getProtestData)
 
 // /* POST */
 
-// router.post('/postBoardMemberNamesAndSignatures', (req, res) => {
-//     controllers.postBoardMemberNamesAndSignatures
-//   response.status(200).send('Hello World')
-// })
 
 // router.post('/postFormData', (req, res) => {
 //     controllers.postFormData
