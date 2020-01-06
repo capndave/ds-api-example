@@ -4,6 +4,7 @@ const logger = require('../logger/logger')
 import rootController from '../controllers/rootController'
 const propIdController = require('../controllers/propIdController')
 const boardMemberController = require('../controllers/boardMemberController')
+const protestController = require('../controllers/protestController')
 
 /* GET */
 router.get('/', rootController)
@@ -17,10 +18,10 @@ router.get('/board/:panel', boardMemberController.getBoardMemberNamesAndSignatur
 //   response.status(200).send('Hello World')
 // })
 
-// router.get('/getProtestYears', (req, res) => {
-//   controllers.getProtestYears
-//   response.status(200).send('Hello World')
-// })
+router.get('/protest/years/:propId', (req, res) => {
+  controllers.getProtestYears
+  response.status(200).send('Hello World')
+})
 
 // router.get('/getProtestData', (req, res) => {
 //   controllers.getProtestData
