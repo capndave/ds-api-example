@@ -61,10 +61,10 @@ function Form(templatePath) {
 
   getPdfStreamFromHtml = async function(html) {
     try {
-      const options = (htmlPdf.CreateOptions = {
+      const options = htmlPdf.CreateOptions = {
         port: 9222,
-        host: '10.27.220.252'
-      })
+        host: process.env.CHROME_SERVER
+      }
       const pdf = await htmlPdf.create(html, options)
       return pdf.toStream()
     } catch (error) {
