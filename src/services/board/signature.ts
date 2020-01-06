@@ -3,6 +3,7 @@ const sql = require('mssql')
 const fs = require('fs')
 const path = require('path') 
 import { BoardMember } from '../../models/board/boardMember.model'
+const fileName = path.basename(__filename)
 
 module.exports = {
   /**
@@ -17,11 +18,15 @@ module.exports = {
   * Check whether a signature file exists for a boardMemberId.
   * @async
   * @function
-  * @param { number } boardMemberId
+  * @param { string } fileName
   */
-  fileExists: async function(boardMemberId: number): Promise<boolean> {
+  fileExists: function(fileName: string): Promise<boolean> {
     return new Promise((resolve, reject) => {
-
+      try {
+        resolve(fs.existsSync(fileName))
+      } catch(err) {
+        reject(`Error checking existence of filename in ${fileName} [28]: ${err}`)
+      }
     })
   },
 

@@ -1,4 +1,4 @@
-const { filePathFromId } = require('../../../src/services/board/signature')
+const { fileExists, filePathFromId } = require('../../../src/services/board/signature')
 const { basename } = require('path')
 
 describe('The filePathFromId method', () => {
@@ -21,6 +21,16 @@ describe('The filePathFromId method', () => {
     
     it('returns a string including an underscore', () => {
         expect(basename(filePathFromId(2))).toMatch('_')
+    })
+
+})
+
+describe('The fileExists method', () => {
+  
+    const filePath = '/home/capndavet/Documents/work/arbq/ds/ds-docker_2020/ds-api/src/services/signatures/signature_2.jpg' 
+
+    it('returns a promise', () => {
+        expect(Promise.resolve(fileExists(filePath))).toEqual(fileExists(filePath))
     })
 
 })
