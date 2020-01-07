@@ -42,15 +42,13 @@ module.exports = {
    * @async
    * @function
    */
-  save: function(boardMemberId: number, signature: any): Promise<string> {
+  save: function(fileName: string, signature: any): Promise<string> {
     return new Promise((resolve, reject) => {
-      const saveFilePath: string = this.filePathFromId(boardMemberId)
-
-      fs.writeFile(saveFilePath, signature, (err: Error) => {
+      fs.writeFile(fileName, signature, (err: Error) => {
         if (err) {
-          reject(`Unable to write file at ${saveFilePath} [41]: ${err}`)
+          reject(`Unable to write file at ${fileName} [41]: ${err}`)
         }
-        resolve(`File written successfully to ${saveFilePath}`)
+        resolve(`File written successfully to ${fileName}`)
       })
     })
   },
@@ -59,13 +57,14 @@ module.exports = {
    * Save a signature file if it does not already exist
    */
   saveIfFileDoesNotExist: async function(
-    boardMember: BoardMember,
+    boardMemberId: string,
     signature: any
   ) {
-    if (await this.fileExists(boardMember)) {
+    const filePath: string = this.filePathFromId(boardMemberId)
+    if (await this.fileExists(filePath)) {
       return 'File already exists'
     } else {
-      await this.save(boardMember, signature)
+      await this.save(filePath, signature)
       return 'File saved successfully'
     }
   }
