@@ -1,3 +1,5 @@
+import path from 'path'
+
 /**
  * Returns the path name of a file in the signatures directory 
  * @function getSignatureFileName
