@@ -5,19 +5,8 @@ const path = require('path')
 import { BoardMember } from '../../models/board/boardMember.model'
 const fileName = path.basename(__filename)
 
-module.exports = {
-  /**
-   * Returns a file path from a give Board Member ID
-   * @param { number } boardMemberId
-   */
-  filePathFromId: function(boardMemberId: number) {
-    return path.join(
-      __dirname,
-      '..',
-      'signatures',
-      `signature_${boardMemberId}.jpg`
-    )
-  },
+
+const Signature = {
 
   /**
    * Check whether a signature file exists for a boardMemberId.
@@ -36,6 +25,19 @@ module.exports = {
       }
     })
   },
+  
+  /**
+   * Returns a file path from a give Board Member ID
+   * @param { number } boardMemberId
+   */
+  filePathFromId: function(boardMemberId: number) {
+    return path.join(
+      __dirname,
+      '../../../..',
+      'signatures',
+      `signature_${boardMemberId}.jpg`
+    )
+  },
 
   /**
    * Check whether a signature file exists for a boardMemberId.
@@ -44,7 +46,7 @@ module.exports = {
    */
   saveFile: function(boardMemberId: number, signature: any): Promise<string> {
 
-    const filePath: string = this.filePathFromId(boardMemberId)
+    const fileName: string = Signature.filePathFromId(boardMemberId)
 
     return new Promise((resolve, reject) => {
       fs.writeFile(fileName, signature, (err: Error) => {
@@ -57,3 +59,5 @@ module.exports = {
   }
 
 }
+
+module.exports = Signature

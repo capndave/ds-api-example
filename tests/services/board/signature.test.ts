@@ -80,9 +80,11 @@ describe('The fileExists method', () => {
 })
 
 describe('the saveFile method', () => {
-  const filePath = join(__dirname, '..', 'board', 'test.txt')
 
-  // Delete test.txt after tests
+  // define file to save
+  const filePath = join(__dirname, '../../../..', 'signatures', 'signature_1000.jpg')
+
+  // delete file after tests
   afterAll(() => {
     fs.unlink(filePath, (err: Error) => {
       if (err)
@@ -96,7 +98,7 @@ describe('the saveFile method', () => {
     expect(Promise.resolve(saveFile(100, 'abc123'))).toEqual(saveFile(100, 'abc123'))
   })
 
-  it('writes content to a file', done => {
+  it.only('writes content to a file', done => {
     saveFile(100, 'abc123').then((result: boolean) => {
       expect(result).toMatch('File written successfully')
       done()
