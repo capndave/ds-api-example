@@ -3,6 +3,7 @@ const sql = require('mssql')
 const fs = require('fs')
 const path = require('path')
 import { BoardMember } from '../../models/board/boardMember.model'
+import getSignatureFileName from './getSignatureFileName'
 const fileName = path.basename(__filename)
 
 
@@ -27,26 +28,13 @@ const Signature = {
   },
   
   /**
-   * Returns a file path from a give Board Member ID
-   * @param { number } boardMemberId
-   */
-  filePathFromId: function(boardMemberId: number) {
-    return path.join(
-      __dirname,
-      '../../../..',
-      'signatures',
-      `signature_${boardMemberId}.jpg`
-    )
-  },
-
-  /**
    * Check whether a signature file exists for a boardMemberId.
    * @async
-   * @function
+   * @method saveFile
    */
   saveFile: function(boardMemberId: number, signature: any): Promise<string> {
 
-    const fileName: string = Signature.filePathFromId(boardMemberId)
+    const fileName: string = getSignatureFileName(boardMemberId)
 
     return new Promise((resolve, reject) => {
       fs.writeFile(fileName, signature, (err: Error) => {

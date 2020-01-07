@@ -3,23 +3,12 @@ const logger = require('../../logger/logger')
 const fs = require('fs')
 const path = require('path')
 import BoardMember from '../../models/boardMember.model'
+import getSignatureFileName from './getSignatureFileName'
 
 /**
  * A module for fetching board member signatures from the file system.
  * @module getBoardMemberSignaturesFromFileSystem
  */
-
-/**
- * Returns the path name of a file in the signatures directory 
- * @function getFileName
- * @param { number } signatureId
- * @returns { string } filePath
- */
-function getFileName(fileId: number): string {
-  const signatureDirectory: string = path.join(__dirname, `../../../../signatures`)
-  const fileName: string = `signature_${fileId}.jpg`
-  return path.join(signatureDirectory, fileName)
-}
 
 /**
  * Reads a file (representing a signature) from the file system.
@@ -31,7 +20,7 @@ function getBoardMemberSignatureFromFileSystem(boardMemberId: number)
     : Promise<Buffer>
 {
     return new Promise ((resolve, reject) => {
-        const fileName = getFileName(boardMemberId)
+        const fileName = getSignatureFileName(boardMemberId)
         fs.readFile(fileName, (error: Error, data: Buffer) => {
             if (error) {
                 reject(`Error reading file in getBoardMemberSignaturesFromFileSystem: ${error}`)
