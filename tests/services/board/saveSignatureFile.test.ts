@@ -4,9 +4,14 @@ import path from 'path'
 import fs from 'fs'
 
 describe('the saveSignatureFile function', () => {
-
   // define file to save
-  const filePath = path.join(__dirname, '../../../..', 'signatures', 'signature_1000.jpg')
+  const boardMemberId = 666
+  const filePath = path.join(
+    __dirname,
+    '../../../../signatures',
+    `signature_${boardMemberId}.jpg`
+  )
+  console.log(filePath)
 
   // delete file after tests
   afterAll(() => {
@@ -19,14 +24,15 @@ describe('the saveSignatureFile function', () => {
   })
 
   it('returns a promise', () => {
-    expect(Promise.resolve(saveSignatureFile(100, 'abc123'))).toEqual(saveSignatureFile(100, 'abc123'))
+    expect(Promise.resolve(saveSignatureFile(boardMemberId, 'abc123'))).toEqual(
+      saveSignatureFile(boardMemberId, 'abc123')
+    )
   })
 
-  it.only('writes content to a file', done => {
-    saveSignatureFile(100, 'abc123').then((result: boolean) => {
+  it('writes content to a file', done => {
+    saveSignatureFile(boardMemberId, 'abc123').then((result: string) => {
       expect(result).toMatch('File written successfully')
       done()
     })
   })
-  
 })
