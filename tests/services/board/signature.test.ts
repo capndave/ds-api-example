@@ -2,7 +2,7 @@ export {} // Tells typescript this is a module
 const {
   fileExists,
   filePathFromId,
-  save
+  saveFile
 } = require('../../../src/services/board/signature')
 const { basename, join } = require('path')
 const fs = require('fs')
@@ -79,7 +79,7 @@ describe('The fileExists method', () => {
   })
 })
 
-describe('the save method', () => {
+describe('the saveFile method', () => {
   const filePath = join(__dirname, '..', 'board', 'test.txt')
 
   // Delete test.txt after tests
@@ -93,19 +93,14 @@ describe('the save method', () => {
   })
 
   it('returns a promise', () => {
-    expect(Promise.resolve(save(filePath))).toEqual(save(filePath))
+    expect(Promise.resolve(saveFile(100, 'abc123'))).toEqual(saveFile(100, 'abc123'))
   })
 
   it('writes content to a file', done => {
-    save(filePath, 'abc123').then((result: boolean) => {
+    saveFile(100, 'abc123').then((result: boolean) => {
       expect(result).toMatch('File written successfully')
       done()
     })
   })
   
-  it('throws an error if given an invalid path', async () => {
-    await expect(save('./not/a/directory', 'someContent')).rejects.toMatch(
-      'Unable to write file'
-    )
-  })
 })

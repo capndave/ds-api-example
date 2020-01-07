@@ -42,7 +42,10 @@ module.exports = {
    * @async
    * @function
    */
-  save: function(fileName: string, signature: any): Promise<string> {
+  saveFile: function(boardMemberId: number, signature: any): Promise<string> {
+
+    const filePath: string = this.filePathFromId(boardMemberId)
+
     return new Promise((resolve, reject) => {
       fs.writeFile(fileName, signature, (err: Error) => {
         if (err) {
@@ -51,21 +54,6 @@ module.exports = {
         resolve(`File written successfully to ${fileName}`)
       })
     })
-  },
-
-  /**
-   * Save a signature file if it does not already exist
-   */
-  saveIfFileDoesNotExist: async function(
-    boardMemberId: string,
-    signature: any
-  ) {
-    const filePath: string = this.filePathFromId(boardMemberId)
-    if (await this.fileExists(filePath)) {
-      return 'File already exists'
-    } else {
-      await this.save(filePath, signature)
-      return 'File saved successfully'
-    }
   }
+
 }
