@@ -2,9 +2,7 @@
 import express from 'express'
 import { getAllBoardMembersFromDatabase, getBoardMembersFromDatabaseForPanel } from '../services/board/getBoardMembersFromDatabase'
 import { getBoardMemberSignaturesFromFileSystem } from '../services/board/getBoardMemberSignaturesFromFileSystem'
-const {
-  boardMemberSignatureSavedToFileSystem
-} = require('../services/board/boardMemberSignatureSavedToFileSystem')
+import saveSignatureFile from '../services/board/saveSignatureFile'
 import mergeSignaturesWithFullNamesAndIds from '../services/board/mergeSignaturesWithFullNamesAndIds'
 import BoardMember, {FullNameAndId, FullNameIdAndSignature} from '../models/board/boardMember.model'
 
@@ -77,6 +75,7 @@ exports.getBoardMemberNamesAndSignaturesForPanel = async function(
  * @param { express.Request } req
  * @param { express.Response } res
  */
+// TODO: WHAT IS THIS?
 exports.postBoardMemberNamesAndSignatures = async function(
   req: express.Request,
   res: express.Response
@@ -90,7 +89,7 @@ exports.postBoardMemberNamesAndSignatures = async function(
   ) // assign to class
 
   boardMembers.forEach(boardMember => {
-    await saveIfFileDoesNotExist(boardMembers)
+    await saveSignatureFile(boardMember)
   })
 
   res.status(200).send('Post request successful')

@@ -1,8 +1,7 @@
-export {} // Lets Typescript know that required modules are in local scope
 
-const fs = require('fs')
-const path = require('path')
-const logger = require('../logger/logger')
+import fs from 'fs'
+import path from 'path'
+import logger from '../logger/logger'
 
 export default function(req: any, res: any) {
   const pathToHtml = path.join(__dirname, '../pages/root.html')

@@ -1,8 +1,8 @@
-const htmlPdf = require('html-pdf-chrome')
-const handlebars = require('handlebars')
-const { readFile } = require('fs')
-const decisionSheetHTML = require('../../templates/decisionSheet')
-const communicationAffidavit = require('../../templates/communicationAffidavit')
+import htmlPdf from 'html-pdf-chrome'
+import handlebars from 'handlebars'
+import { readFile } from 'fs'
+import decisionSheetHTML from '../../templates/decisionSheet'
+import communicationAffidavit from '../..templates/communicationAffidavit'
 const logger = require('../../logger/logger')
 
 /**
@@ -100,10 +100,6 @@ function Form(templatePath) {
   }
 }
 
-module.exports = {
-  Form,
-  CommunicationAffidavit: new Form(
-    './src/templates/communicationAffidavit.hbs'
-  ),
-  DecisionSheet: new Form('./src/templates/decisionSheet.hbs')
-}
+export default Form
+export const CommunicationAffidavit: new Form('./src/templates/communicationAffidavit.hbs')
+export const DecisionSheet: new Form('./src/templates/decisionSheet.hbs')

@@ -1,4 +1,4 @@
-import getPropIdsInPanelFromDatabase from '../services/getPropIdsInPanelFromDatabase'
+import getPropIdsInPanelFromDatabase from '../services/board/getPropIdsInPanelFromDatabase'
 
 /**
  * A module for working with prop id data.
@@ -14,7 +14,7 @@ import getPropIdsInPanelFromDatabase from '../services/getPropIdsInPanelFromData
   * @param { Request } req
   * @param { Response } res
   */
-exports.getPropIdsInPanel = async function (req: Request, res: Response) {
+export default getPropIdsInPanel = async function (req: Request, res: Response) {
 
     const panel: number = parseInt(req.params.panel)
     const pool: any = req.app.locals.pool

@@ -1,8 +1,7 @@
 'use strict'
-export {} // Tells typescript to treat required modules as locals
-const fs = require('fs')
-const winston = require('winston')
-const logDir = './logs/'
+import fs from 'fs'
+import winston from 'winston'
+const logDir = 'logs/'
 const date = new Date()
 
 // Create log dir if it doesn't exist

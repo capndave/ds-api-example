@@ -1,6 +1,6 @@
-const logger = require('../../logger/logger')
-const path = require('path')
-const sql = require('mssql')
+import logger from '../../logger/logger'
+import path from 'path'
+
 const fileName = path.basename(__filename)
 
  /**

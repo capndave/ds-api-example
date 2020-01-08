@@ -1,5 +1,5 @@
-const logger = require('../../logger/logger'
-const sql = require('mssql')
+import logger from '../../logger/logger'
+import sql from 'mssql'
 
 /**
  * A module which gets board members from the database

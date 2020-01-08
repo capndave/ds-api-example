@@ -1,6 +1,7 @@
-const logger = require('../../logger/logger')
-const path = require('path')
-const sql = require('mssql')
+import logger from '../../logger/logger'
+import path from 'path'
+import sql from 'mssql'
+
 const fileName = path.basename(__filename)
 
  /**
@@ -10,7 +11,7 @@ const fileName = path.basename(__filename)
   * @param { object } pool - A sql connection pool
   * @returns { Promise<object> }
   */
-async function getProtestDataFromDatabase(pool: any): Promise<number[]> {
+export default async function getProtestDataFromDatabase(pool: any): Promise<number[]> {
   // TODO: Find correct sp name after db stuff has been figured out
   try {
     return await pool
@@ -24,5 +25,3 @@ async function getProtestDataFromDatabase(pool: any): Promise<number[]> {
     )
   }
 }
-
-module.exports = getProtestDataFromDatabase

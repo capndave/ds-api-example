@@ -1,5 +1,5 @@
-const getProtestYearsFromDatabase = require('../services/getProtestYearsFromDatabase')
-const getProtestDataFromDatabase = require('../services/getProtestDataFromDatabase')
+import getProtestYearsFromDatabase from '../services/protest/getProtestYearsFromDatabase'
+import getProtestDataFromDatabase from '../services/protest/getProtestDataFromDatabase'
 
 /**
  * A module for working with prop id data.
@@ -15,7 +15,7 @@ const getProtestDataFromDatabase = require('../services/getProtestDataFromDataba
   * @param { Request } req
   * @param { Response } res
   */
-exports.getProtestYears = async function (req: Request, res: Response) {
+export async function getProtestYears(req: Request, res: Response) {
 
     const propId: number = parseInt(req.params.propId)
     const pool: any = req.app.locals.pool
@@ -35,7 +35,7 @@ exports.getProtestYears = async function (req: Request, res: Response) {
   * @param { Response } res
   */
 
-exports.getProtestData = async function (req: Request, res: Response) {
+export async function getProtestData(req: Request, res: Response) {
     const propId: number = parseInt(req.params.propId)
     const year: number = parseInt(req.query.year)
     const pool: any = req.app.locals.pool

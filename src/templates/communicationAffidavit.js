@@ -1,5 +1,5 @@
-const Handlebars = require('handlebars'),
-      accounting = require('accounting-js')
+import Handlebars from 'handlebars'
+import accounting from 'accounting-js'
 
 var template = `
 <body>
@@ -8,7 +8,6 @@ var template = `
   </main>`      
 
 var compiledTemplate = Handlebars.compile(template)
-
 
 var head = `<!DOCTYPE html>
 	<html dir="ltr" lang="en">

@@ -1,10 +1,10 @@
-const router = require('express').Router()
+import express from 'express'
+const router = express.Router()
 const logger = require('../logger/logger')
-// TODO: add controllers for each route
 import rootController from '../controllers/rootController'
-const propIdController = require('../controllers/propIdController')
-const boardMemberController = require('../controllers/boardMemberController')
-const protestController = require('../controllers/protestController')
+import propIdController from '../controllers/propIdController'
+import boardMemberController from '../controllers/boardMemberController'
+import protestController from '../controllers/protestController'
 
 /* GET */
 router.get('/', rootController)
