@@ -1,7 +1,5 @@
 import logger from '../../logger/logger'
 import fs from 'fs'
-const path = require('path')
-import BoardMember from '../../models/boardMember.model'
 import getSignatureFileName from './getSignatureFileName'
 
 /**
@@ -15,11 +13,10 @@ import getSignatureFileName from './getSignatureFileName'
  * @param { number } boardMemberid
  * @returns { Promise<Buffer> }
  */
-function getBoardMemberSignatureFromFileSystem(
-  boardMemberId: number
-): Promise<Buffer> {
+export function getSignatureFile(boardMemberId: number): Promise<Buffer> {
   return new Promise((resolve, reject) => {
     const fileName = getSignatureFileName(boardMemberId)
+
     fs.readFile(fileName, (error: Error, data: Buffer) => {
       if (error) {
         reject(
@@ -33,19 +30,19 @@ function getBoardMemberSignatureFromFileSystem(
 
 /**
  * Recieves an array of fileIds and
- * calls getBoardMemberSignatureFromFile for all of them
- * @alias:module getBoardMemberSignaturesFromFileSystem
- * @param fileIds
+ * calls getSignatureFile for all of them
+ * @function getSignatureFiles
+ * @param { number[] } fileIds
  * @returns { Promise.<Buffer[]> }
  */
-export const getBoardMemberSignaturesFromFileSystem = async function(
+export default async function getSignatureFiles(
   fileIds: number[]
 ): Promise<Buffer[]> {
   console.log(fileIds)
   try {
     return await Promise.all(
       fileIds.map(fileId => {
-        return getBoardMemberSignatureFromFileSystem(fileId)
+        return getSignatureFile(fileId)
       })
     )
   } catch (error) {

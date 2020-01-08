@@ -15,7 +15,6 @@ export default winston.createLogger({
     // Output to console
     new winston.transports.Console({
       format: winston.format.simple(),
-      colorize: true,
       level: 'info',
     }),
     // Output to file
