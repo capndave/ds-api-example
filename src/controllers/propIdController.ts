@@ -1,4 +1,4 @@
-const getPropIdsInPanelFromDatabase = require('../services/getPropIdsInPanelFromDatabase')
+import getPropIdsInPanelFromDatabase from '../services/getPropIdsInPanelFromDatabase'
 
 /**
  * A module for working with prop id data.

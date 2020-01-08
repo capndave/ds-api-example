@@ -1,5 +1,5 @@
-const logger = require('../logger/logger'
-const sql = require('mssql')
+import logger from '../logger/logger'
+import sql from 'mssql'
 
 /**
  * A module which gets the property ids from the database
@@ -10,7 +10,7 @@ const sql = require('mssql')
   * Get the prop id's in a panel from the database.
   * @alias module:getPropIdsInPanelFromDatabase
   */
-async function getPropIdsInPanelFromDatabase(
+export default async function getPropIdsInPanelFromDatabase(
 { panel, pool }: { panel: number; pool: any; }  ): Promise<[{ prop_id: number }]> {
   try {
     return await pool
@@ -23,5 +23,3 @@ async function getPropIdsInPanelFromDatabase(
     )
   }
 }
-
-module.exports = getPropIdsInPanelFromDatabase

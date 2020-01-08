@@ -1,9 +1,7 @@
 //TODO: Finish boardMemberController
-import express = require('express')
+import express from 'express'
 import { getAllBoardMembersFromDatabase, getBoardMembersFromDatabaseForPanel } from '../services/board/getBoardMembersFromDatabase'
-const {
-  getBoardMemberSignaturesFromFileSystem
-} = require('../services/board/getBoardMemberSignaturesFromFileSystem')
+import { getBoardMemberSignaturesFromFileSystem } from '../services/board/getBoardMemberSignaturesFromFileSystem'
 const {
   boardMemberSignatureSavedToFileSystem
 } = require('../services/board/boardMemberSignatureSavedToFileSystem')

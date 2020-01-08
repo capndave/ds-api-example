@@ -10,7 +10,7 @@ if (!fs.existsSync(logDir)) {
   fs.mkdirSync(logDir)
 }
 
-module.exports = winston.createLogger({
+export default winston.createLogger({
   level: 'info',
   transports: [
     // Output to console

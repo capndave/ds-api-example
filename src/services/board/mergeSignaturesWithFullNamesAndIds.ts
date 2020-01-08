@@ -1,5 +1,5 @@
 export {} // Tell typescript to recognize imported modules as in this scope
-const logger = require('../../logger/logger')
+import logger from '../../logger/logger'
 import { FullNameAndId, FullNameIdAndSignature } from '../../models/board/boardMember.model'
 
 /**
