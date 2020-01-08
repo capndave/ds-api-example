@@ -13,7 +13,7 @@ const sql = require('mssql')
   * @param { object } pool - A sql connection pool
   * //TODO: actually returns result object @returns { Promise<string[]> }
   */
-async function all(pool: any): Promise<[{ full_name: string }]> {
+export function getAllBoardMembersFromDatabase(pool: any): Promise<[{ full_name: string }]> {
   try {
     return await pool
       .request()
@@ -33,7 +33,7 @@ async function all(pool: any): Promise<[{ full_name: string }]> {
   * @param { object } pool - A sql connection pool
   * //TODO: actually returns result object @returns { Promise<string[]> }
   */
-async function forPanel(panel: number, pool: any): Promise<[{ full_name: string }]> {
+export async function getBoardMembersFromDatabaseForPanel(panel: number, pool: any): Promise<[{ full_name: string }]> {
   try {
     return await pool
       .request()
@@ -44,9 +44,4 @@ async function forPanel(panel: number, pool: any): Promise<[{ full_name: string 
       `Error fetching data from database in getBoardMembersFromDatabase [44]: ${error}`
     )
   }
-}
-
-module.exports = {
-  all,
-  forPanel
 }

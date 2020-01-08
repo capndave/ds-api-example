@@ -1,6 +1,6 @@
 //TODO: Finish boardMemberController
 import express = require('express')
-import getBoardMembersFromDatabase from '../services/board/getBoardMembersFromDatabase'
+import { getAllBoardMembersFromDatabase, getBoardMembersFromDatabaseForPanel } from '../services/board/getBoardMembersFromDatabase'
 const {
   getBoardMemberSignaturesFromFileSystem
 } = require('../services/board/getBoardMemberSignaturesFromFileSystem')
@@ -29,7 +29,7 @@ exports.getBoardMembers = async function(
   res: express.Response
 ) {
   const pool: any = req.app.locals.pool
-  const { recordset }: any = await getBoardMembersFromDatabase.all(pool)
+  const { recordset }: any = await getAllBoardMembersFromDatabase(pool)
   res.send(recordset).status(200)
 }
 
@@ -53,7 +53,7 @@ exports.getBoardMemberNamesAndSignaturesForPanel = async function(
   const pool: any = req.app.locals.pool
   const {
     recordset
-  }: { recordset: FullNameAndId[] } = await getBoardMembersFromDatabase.forPanel(
+  }: { recordset: FullNameAndId[] } = await getBoardMembersFromDatabaseForPanel(
     panel,
     pool
   )
