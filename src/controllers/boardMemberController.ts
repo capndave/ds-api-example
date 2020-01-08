@@ -7,8 +7,8 @@ const {
 const {
   boardMemberSignatureSavedToFileSystem
 } = require('../services/board/boardMemberSignatureSavedToFileSystem')
-import mergeBoardMemberIdsAndSignaturesIntoObject from '../services/board/mergeBoardMemberIdsAndSignaturesIntoObject'
-import { BoardMember } from '../models/board/boardMember.model'
+import mergeSignaturesIntoBoardMembersArr from '../services/board/mergeSignaturesIntoBoardMembersArr'
+import BoardMember, {FullNameAndId, FullNameIdAndSignature} from '../models/board/boardMember.model'
 
 /**
  * A module for working with board member data.
@@ -53,21 +53,18 @@ exports.getBoardMemberNamesAndSignaturesForPanel = async function(
   const pool: any = req.app.locals.pool
   const {
     recordset
-  }: { recordset: BoardMember[] } = await getBoardMembersFromDatabase.forPanel(
+  }: { recordset: FullNameAndId[] } = await getBoardMembersFromDatabase.forPanel(
     panel,
     pool
   )
-  const boardMemberIds: number[] = recordset.map(
+  const ids: number[] = recordset.map(
     boardMember => boardMember.board_member_id
   )
-  const signatures: Buffer[] = await getBoardMemberSignaturesFromFileSystem(
-    boardMemberIds
+  const signatures: Buffer[] = await getBoardMemberSignaturesFromFileSystem(ids)
+  const fullNamesIdsAndSignatures: fullNameIdAndSignature[] = mergeSignaturesIntoBoardMembersArr(
+    recordset, signatures
   )
-  const boardMemberIdsAndSignatures: BoardMember[] = mergeBoardMemberIdsAndSignaturesIntoObject(
-    recordset,
-    signatures
-  )
-  res.send(boardMembers).status(200)
+  res.send(fullNamesIdsAndSignatures).status(200)
 }
 
 /**
