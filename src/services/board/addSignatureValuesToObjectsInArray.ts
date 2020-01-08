@@ -1,6 +1,6 @@
 export {} // Tell typescript to recognize imported modules as in this scope
 const logger = require('../../logger/logger')
-import BoardMember from '../../models/boardMember.model'
+import BoardMember from '../../models/board/boardMember.model'
 
 /**
  * Merges name and signature data into an object
