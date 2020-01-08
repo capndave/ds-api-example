@@ -1,13 +1,13 @@
 //TODO: Finish boardMemberController
 import express = require('express')
-const getBoardMembersFromDatabase = require('../services/board/getBoardMembersFromDatabase')
+import getBoardMembersFromDatabase from '../services/board/getBoardMembersFromDatabase'
 const {
   getBoardMemberSignaturesFromFileSystem
 } = require('../services/board/getBoardMemberSignaturesFromFileSystem')
 const {
   boardMemberSignatureSavedToFileSystem
 } = require('../services/board/boardMemberSignatureSavedToFileSystem')
-import mergeSignaturesIntoBoardMembersArr from '../services/board/mergeSignaturesIntoBoardMembersArr'
+import mergeSignaturesWithFullNamesAndIds from '../services/board/mergeSignaturesWithFullNamesAndIds'
 import BoardMember, {FullNameAndId, FullNameIdAndSignature} from '../models/board/boardMember.model'
 
 /**
@@ -61,7 +61,7 @@ exports.getBoardMemberNamesAndSignaturesForPanel = async function(
     boardMember => boardMember.board_member_id
   )
   const signatures: Buffer[] = await getBoardMemberSignaturesFromFileSystem(ids)
-  const fullNamesIdsAndSignatures: fullNameIdAndSignature[] = mergeSignaturesIntoBoardMembersArr(
+  const fullNamesIdsAndSignatures: fullNameIdAndSignature[] = mergeSignaturesWithFullNamesAndIds(
     recordset, signatures
   )
   res.send(fullNamesIdsAndSignatures).status(200)
