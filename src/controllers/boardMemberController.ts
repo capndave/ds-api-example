@@ -7,7 +7,7 @@ const {
 const {
   boardMemberSignatureSavedToFileSystem
 } = require('../services/board/boardMemberSignatureSavedToFileSystem')
-import { addSignatureValuesToObjectsInArray } from '../services/board/addSignatureValuesToObjectsInArray'
+import mergeBoardMemberIdsAndSignaturesIntoObject from '../services/board/mergeBoardMemberIdsAndSignaturesIntoObject'
 import { BoardMember } from '../models/board/boardMember.model'
 
 /**
@@ -63,7 +63,7 @@ exports.getBoardMemberNamesAndSignaturesForPanel = async function(
   const signatures: Buffer[] = await getBoardMemberSignaturesFromFileSystem(
     boardMemberIds
   )
-  const boardMembers: BoardMember[] = addSignatureValuesToObjectsInArray(
+  const boardMemberIdsAndSignatures: BoardMember[] = mergeBoardMemberIdsAndSignaturesIntoObject(
     recordset,
     signatures
   )

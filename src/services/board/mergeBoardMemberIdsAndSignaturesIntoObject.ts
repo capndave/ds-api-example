@@ -4,11 +4,11 @@ import BoardMember from '../../models/board/boardMember.model'
 
 /**
  * Merges name and signature data into an object
- * @function addSignatureValuesToObjectsInArray
+ * @function mergeBoardMemberIdsAndSignaturesIntoObject
  * @param { BoardMember[] } boardMembers
  * @return { BoardMember[] }
  */
-export function addSignatureValuesToObjectsInArray(
+export default function mergeBoardMemberIdsAndSignaturesIntoObject(
     boardMembers: BoardMember[],
     signatureArray: Buffer[]
 ): BoardMember[] {

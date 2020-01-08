@@ -1,4 +1,4 @@
-export class BoardMember {
+export default class BoardMember {
     board_member_id: number | undefined
     first_name: string
     last_name: string
