@@ -4,8 +4,12 @@ import path from 'path'
 import { getSignatureFile } from '../../../src/services/board/getSignatureFiles'
 
 describe('The getBoardMemberSignatureFromFileSystem function', () => {
-
-  const filePath = path.join(__dirname, '..', 'signatures', 'signature_1000.jpg')
+  const filePath = path.join(
+    __dirname,
+    '../../../..',
+    'signatures',
+    'signature_1000.jpg'
+  )
 
   // Write test.txt before tests
   beforeAll(() => {
@@ -17,39 +21,32 @@ describe('The getBoardMemberSignatureFromFileSystem function', () => {
     })
   })
 
-  // // Delete test.txt after tests
-  // afterAll(() => {
-  //   fs.unlink(filePath, (err: Error) => {
-  //     if (err)
-  //       throw new Error(
-  //         `Unable to delete test file at signature.test.ts [45]: ${err}`
-  //       )
-  //   })
-  // })
-
-  it.only('returns a promise', () => {
-    expect(Promise.resolve(getSignatureFile(1000))).toEqual(getSignatureFile(1000))
+  // Delete test.txt after tests
+  afterAll(() => {
+    fs.unlink(filePath, (err: Error) => {
+      if (err)
+        throw new Error(
+          `Unable to delete test file at signature.test.ts [45]: ${err}`
+        )
+    })
   })
 
-  // it('resolves to a boolean', done => {
-  //   fileExists(filePath).then((result: boolean) => {
-  //     expect(typeof result).toBe('boolean')
-  //     done()
-  //   })
-  // })
+  it('returns a promise', () => {
+    expect(Promise.resolve(getSignatureFile(1000))).toEqual(
+      getSignatureFile(1000)
+    )
+  })
 
-  // it('resolves to true when file exists', done => {
-  //   fileExists(filePath).then((result: boolean) => {
-  //     expect(result).toBe(true)
-  //     done()
-  //   })
-  // })
+  it('resolves to a buffer object', done => {
+    getSignatureFile(1000).then((result: Buffer) => {
+      expect(Buffer.isBuffer(result)).toBe(true)
+      done()
+    })
+  })
 
-  // it('resolves to false when file does not exist', done => {
-  //   const notAFile = './notAFile.txt'
-  //   fileExists(notAFile).then((result: any) => {
-  //     expect(result).toBe(false)
-  //     done()
-  //   })
-  // })
+  it('throws an error when file does not exist', async () => {
+    await getSignatureFile(999).catch(e =>
+      expect(e).toMatch('Error reading file')
+    )
+  })
 })

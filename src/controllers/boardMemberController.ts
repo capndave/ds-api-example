@@ -1,7 +1,7 @@
 //TODO: Finish boardMemberController
 import express from 'express'
 import { getAllBoardMembersFromDatabase, getBoardMembersFromDatabaseForPanel } from '../services/board/getBoardMembersFromDatabase'
-import { getBoardMemberSignaturesFromFileSystem } from '../services/board/getBoardMemberSignaturesFromFileSystem'
+import { getBoardMemberSignaturesFromFileSystem } from '../services/board/getSignatureFiles'
 import saveSignatureFile from '../services/board/saveSignatureFile'
 import mergeSignaturesWithFullNamesAndIds from '../services/board/mergeSignaturesWithFullNamesAndIds'
 import BoardMember, {FullNameAndId, FullNameIdAndSignature} from '../models/board/boardMember.model'
