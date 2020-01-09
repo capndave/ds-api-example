@@ -12,6 +12,10 @@ router.get('/panel/properties/:panel', propIdController.getPropIdsInPanel)
 router.get('/board/members', boardMemberController.getBoardMembers)
 router.get('/board/member/:panel', boardMemberController.getBoardMemberNamesAndSignaturesForPanel)
 router.post('/board/members', boardMemberController.postBoardMemberNamesAndSignatures)
+// router.get('/protest/years/:propId', protestController.getProtestYears)
+// router.get('/protest/data/:propId', protestController.getProtestData)
+
+
 
 // router.get('/getExpectedBoardMemberNamesAndSignatures', boardMemberController.getBoardMembers)
 
@@ -20,8 +24,6 @@ router.post('/board/members', boardMemberController.postBoardMemberNamesAndSigna
 //   response.status(200).send('Hello World')
 // })
 
-router.get('/protest/years/:propId', protestController.getProtestYear)
-router.get('/protest/data/:propId', protestController.getProtestData)
 
 // router.get('/getAppraisers', (req, res) => {
 //     controllers.getAppraisers

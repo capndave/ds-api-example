@@ -90,6 +90,8 @@ export async function postBoardMemberNamesAndSignatures(
   const panel: number = parseInt(req.params.panel)
   const pool: any = req.app.locals.pool
 
+  console.log('here')
+
   // // map request body to an array of BoardMember class
   // const boardMembers: BoardMember[] = req.body.map(
   //   boardMember => new BoardMember(boardMember)
