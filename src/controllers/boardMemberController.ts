@@ -83,7 +83,6 @@ export async function getBoardMemberNamesAndSignaturesForPanel(
  * @param { express.Request } req
  * @param { express.Response } res
  */
-// TODO: WHAT IS THIS?
 export async function postBoardMemberNamesAndSignatures(
   req: express.Request,
   res: express.Response
@@ -96,6 +95,10 @@ export async function postBoardMemberNamesAndSignatures(
   //   boardMember => new BoardMember(boardMember)
   // ) // assign to class
   prettyPrintObject(req.body.map)
+
+  // TODO: Post board member names to db
+
+  //TODO: Post board member signatures to fs
 
   // boardMembers.forEach(boardMember => {
   //   await saveSignatureFile(boardMember)

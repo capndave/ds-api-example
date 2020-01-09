@@ -2,9 +2,9 @@ import express from 'express'
 const router = express.Router()
 import logger from '../logger/logger'
 import rootController from '../controllers/rootController'
-import propIdController from '../controllers/propIdController'
-import boardMemberController from '../controllers/boardMemberController'
-import protestController from '../controllers/protestController'
+import * as propIdController from '../controllers/propIdController'
+import * as boardMemberController from '../controllers/boardMemberController'
+import * as protestController from '../controllers/protestController'
 
 /* GET */
 router.get('/', rootController)

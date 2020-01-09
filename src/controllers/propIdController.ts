@@ -11,7 +11,7 @@ import * as express from 'express'
   * @param { Request } req
   * @param { Response } res
   */
-export default async function getPropIdsInPanel(req: express.Request, res: express.Response) {
+export async function getPropIdsInPanel(req: express.Request, res: express.Response) {
 
     const panel: number = parseInt(req.params.panel)
     const pool: any = req.app.locals.pool
