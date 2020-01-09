@@ -1,7 +1,7 @@
 //TODO: Finish boardMemberController
 import express from 'express'
 import { getAllBoardMembersFromDatabase, getBoardMembersFromDatabaseForPanel } from '../services/board/getBoardMembersFromDatabase'
-import { getBoardMemberSignaturesFromFileSystem } from '../services/board/getSignatureFiles'
+import getSignatureFiles from '../services/board/getSignatureFiles'
 import saveSignatureFile from '../services/board/saveSignatureFile'
 import mergeSignaturesWithFullNamesAndIds from '../services/board/mergeSignaturesWithFullNamesAndIds'
 import BoardMember, {FullNameAndId, FullNameIdAndSignature} from '../models/board/boardMember.model'
@@ -56,7 +56,7 @@ export async function getBoardMemberNamesAndSignaturesForPanel(
   const ids: number[] = recordset.map(
     boardMember => boardMember.board_member_id
   )
-  const signatures: Buffer[] = await getBoardMemberSignaturesFromFileSystem(ids)
+  const signatures: Buffer[] = await getSignatureFiles(ids)
   const fullNamesIdsAndSignatures: fullNameIdAndSignature[] = mergeSignaturesWithFullNamesAndIds(
     recordset, signatures
   )
