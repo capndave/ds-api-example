@@ -12,9 +12,9 @@ import { FullName, FullNameAndId } from '../../models/board/boardMember.model'
  * @async
  * @method all
  * @param { object } pool - A sql connection pool
- * //TODO: actually returns result object @returns { Promise<string[]> }
+ * @returns { Promise<[{ full_name: string }]> }
  */
-export function getAllBoardMembersFromDatabase(
+export async function getAllBoardMemberNamesAndIdsFromDatabase(
   pool: any
 ): Promise<[{ full_name: string }]> {
   try {
@@ -33,7 +33,7 @@ export function getAllBoardMembersFromDatabase(
  * @param { number } panel
  * @param { object } pool - A sql connection pool
  */
-export async function getBoardMembersFromDatabaseForPanel(
+export async function getBoardMemberNamesAndIdsFromDatabaseForPanel(
   panel: number,
   pool: any
 ): Promise<any> {
@@ -41,7 +41,7 @@ export async function getBoardMembersFromDatabaseForPanel(
     return await pool
       .request()
       .input('panel', sql.TinyInt, panel)
-      .execute('ma_get_board_members_for_panel')
+      .execute('ma_get_board_member_names_and_ids_for_panel')
   } catch (error) {
     logger.error(
       `Error fetching data from database in getBoardMembersFromDatabase [44]: ${error}`

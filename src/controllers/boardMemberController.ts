@@ -1,10 +1,16 @@
 //TODO: Finish boardMemberController
 import express from 'express'
-import { getAllBoardMembersFromDatabase, getBoardMembersFromDatabaseForPanel } from '../services/board/getBoardMembersFromDatabase'
+import {
+  getAllBoardMemberNamesAndIdsFromDatabase,
+  getBoardMemberNamesAndIdsFromDatabaseForPanel
+} from '../services/board/getBoardMembersFromDatabase'
 import getSignatureFiles from '../services/board/getSignatureFiles'
 import saveSignatureFile from '../services/board/saveSignatureFile'
 import mergeSignaturesWithFullNamesAndIds from '../services/board/mergeSignaturesWithFullNamesAndIds'
-import BoardMember, {FullNameAndId, FullNameIdAndSignature} from '../models/board/boardMember.model'
+import BoardMember, {
+  FullNameAndId,
+  FullNameIdAndSignature
+} from '../models/board/boardMember.model'
 
 /**
  * A module for working with board member data.
@@ -25,7 +31,7 @@ export async function getBoardMembers(
   res: express.Response
 ) {
   const pool: any = req.app.locals.pool
-  const { recordset }: any = await getAllBoardMembersFromDatabase(pool)
+  const { recordset }: any = await getAllBoardMemberNamesAndIdsFromDatabase(pool)
   res.send(recordset).status(200)
 }
 
@@ -47,9 +53,9 @@ export async function getBoardMemberNamesAndSignaturesForPanel(
 ) {
   const panel: number = parseInt(req.params.panel)
   const pool: any = req.app.locals.pool
-  const {
-    recordset
-  }: { recordset: Promise<any> } = await getBoardMembersFromDatabaseForPanel(
+
+  const { recordset }: { recordset: FullNameAndId[] }
+    = await getBoardMemberNamesAndIdsFromDatabaseForPanel(
     panel,
     pool
   )
@@ -57,8 +63,9 @@ export async function getBoardMemberNamesAndSignaturesForPanel(
     (boardMember: any) => boardMember.board_member_id
   )
   const signatures: Buffer[] = await getSignatureFiles(ids)
-  const fullNamesIdsAndSignatures: fullNameIdAndSignature[] = mergeSignaturesWithFullNamesAndIds(
-    recordset, signatures
+  const fullNamesIdsAndSignatures: FullNameIdAndSignature[] = mergeSignaturesWithFullNamesAndIds(
+    recordset,
+    signatures
   )
   res.send(fullNamesIdsAndSignatures).status(200)
 }
