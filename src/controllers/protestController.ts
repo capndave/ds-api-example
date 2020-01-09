@@ -1,6 +1,6 @@
 import getProtestYearsFromDatabase from '../services/protest/getProtestYearsFromDatabase'
 import getProtestDataFromDatabase from '../services/protest/getProtestDataFromDatabase'
-import * as express from 'express'
+import express from 'express'
 
 /**
  * A module for working with prop id data.
@@ -13,15 +13,15 @@ import * as express from 'express'
   * and sends data with the response object
   * @async
   * @method
-  * @param { Request } req
-  * @param { Response } res
+  * @param { express.Request } req
+  * @param { express.Response } res
   */
 export async function getProtestYears(req: express.Request, res: express.Response) {
 
     const panel: number = parseInt(req.params.panel)
     const pool: any = req.app.locals.pool
 
-    const { recordset }: number[] = await getProtestYearsFromDatabase(panel, pool)
+    const { recordset }: any = await getProtestYearsFromDatabase(panel, pool)
     res.send(recordset).status(200)
 
 }
@@ -32,8 +32,8 @@ export async function getProtestYears(req: express.Request, res: express.Respons
   * and sends data with the response object
   * @async
   * @method
-  * @param { Request } req
-  * @param { Response } res
+  * @param { express.Request } req
+  * @param { express.Response } res
   */
 
 export async function getProtestData(req: express.Request, res: express.Response) {
@@ -41,8 +41,8 @@ export async function getProtestData(req: express.Request, res: express.Response
     const year: number = parseInt(req.query.year)
     const pool: any = req.app.locals.pool
 
-    const {recordset: data}: number[] = await getProtestDataFromDatabase({panel, year, pool})
-    res.send(data).status(200)
+    const { recordset }: any = await getProtestDataFromDatabase({panel, year, pool})
+    res.send(recordset).status(200)
 
 }
  
@@ -58,7 +58,7 @@ exports.postProtestData = async function (req: express.Request, res: express.Res
 
     const pool: any = req.app.locals.pool
 
-    const {recordset: data}: number[] = await postProtestDataToDatabase(req.body, pool)
-    res.send(data).status(200)
+    const { recordset }: any = await postProtestDataToDatabase(req.body, pool)
+    res.send(recordset).status(200)
 
 }
