@@ -1,6 +1,6 @@
 import express from 'express'
 const router = express.Router()
-const logger = require('../logger/logger')
+import logger from '../logger/logger'
 import rootController from '../controllers/rootController'
 import propIdController from '../controllers/propIdController'
 import boardMemberController from '../controllers/boardMemberController'
@@ -41,4 +41,4 @@ router.get('/protest/data/:propId', protestController.getProtestData)
 //   response.status(200).send('Hello World')
 // })
 
-module.exports = router
+export default router

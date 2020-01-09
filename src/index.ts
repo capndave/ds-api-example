@@ -1,8 +1,8 @@
-import express = require('express')
-const logger = require('./logger/logger')
-const routes = require('./routes/routes')
-const loaders = require('./loaders/loaders')
-const database = require('./database/database')
+import express from 'express'
+import logger from './logger/logger'
+import routes from './routes/routes'
+import loaders from './loaders/loaders'
+import database from './database/database'
 
 async function startApp() {
 

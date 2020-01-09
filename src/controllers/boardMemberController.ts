@@ -20,7 +20,7 @@ import BoardMember, {FullNameAndId, FullNameIdAndSignature} from '../models/boar
  * @param { express.Request } req
  * @param { express.Response } res
  */
-exports.getBoardMembers = async function(
+export async function getBoardMembers(
   req: express.Request,
   res: express.Response
 ) {
@@ -41,7 +41,7 @@ exports.getBoardMembers = async function(
  * @param { express.Request } req
  * @param { express.Response } res
  */
-exports.getBoardMemberNamesAndSignaturesForPanel = async function(
+export async function getBoardMemberNamesAndSignaturesForPanel(
   req: express.Request,
   res: express.Response
 ) {
@@ -76,7 +76,7 @@ exports.getBoardMemberNamesAndSignaturesForPanel = async function(
  * @param { express.Response } res
  */
 // TODO: WHAT IS THIS?
-exports.postBoardMemberNamesAndSignatures = async function(
+export async function postBoardMemberNamesAndSignatures(
   req: express.Request,
   res: express.Response
 ) {

@@ -1,6 +1,6 @@
-const sql = require('mssql')
-const { config } = require('../settings/settings')
-const logger = require('../logger/logger')
+import * as sql from 'mssql'
+import { config } from '../settings/settings'
+import logger from '../logger/logger'
 
 /**
  * A module for connecting to a SQL Server database
@@ -14,7 +14,7 @@ const logger = require('../logger/logger')
  *  @async
  *  @alias module:database
  */
-module.exports = async function() {
+export default async function() {
     try {
       const connection = await sql.connect(config)
       logger.info('SQL connection established')
@@ -23,4 +23,3 @@ module.exports = async function() {
       logger.error(`Error creating connection pool in mssql.js [16]: ${error}`)
     }
   }
-}
