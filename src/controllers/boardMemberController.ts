@@ -11,6 +11,7 @@ import BoardMember, {
   FullNameAndId,
   FullNameIdAndSignature
 } from '../models/board/boardMember.model'
+import prettyPrintObject from '../services/utilities/prettyPrintObject'
 
 /**
  * A module for working with board member data.
@@ -90,14 +91,15 @@ export async function postBoardMemberNamesAndSignatures(
   const panel: number = parseInt(req.params.panel)
   const pool: any = req.app.locals.pool
 
-  // map request body to an array of BoardMember class
-  const boardMembers: BoardMember[] = req.body.map(
-    boardMember => new BoardMember(boardMember)
-  ) // assign to class
+  // // map request body to an array of BoardMember class
+  // const boardMembers: BoardMember[] = req.body.map(
+  //   boardMember => new BoardMember(boardMember)
+  // ) // assign to class
+  prettyPrintObject(req.body.map)
 
-  boardMembers.forEach(boardMember => {
-    await saveSignatureFile(boardMember)
-  })
+  // boardMembers.forEach(boardMember => {
+  //   await saveSignatureFile(boardMember)
+  // })
 
   res.status(200).send('Post request successful')
 }

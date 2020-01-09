@@ -35,11 +35,3 @@ export class FullNameIdAndSignature {
       this.signature = input.signature
     }
 }
-
-export class PropId {
-    prop_id: number
-
-    constructor(input?: any) {
-      this.prop_id = this.prop_id
-    }
-}

@@ -1,25 +1,22 @@
 import getPropIdsInPanelFromDatabase from '../services/board/getPropIdsInPanelFromDatabase'
-
-/**
- * A module for working with prop id data.
- * @module propIdControllers
- */
+import PropId  from '../interfaces/propId.interface'
+import * as express from 'express'
 
  /**
   * Extracts the panel number and connection pool from the request object,
   * gets data from the getPropIdsInPanelFromDatabase service,
   * and sends data with the response object
   * @async
-  * @method
+  * @function getPropIdsInPanel
   * @param { Request } req
   * @param { Response } res
   */
-export default getPropIdsInPanel = async function (req: Request, res: Response) {
+export default async function getPropIdsInPanel(req: express.Request, res: express.Response) {
 
     const panel: number = parseInt(req.params.panel)
     const pool: any = req.app.locals.pool
 
-    const {recordset: data}: number[] = await getPropIdsInPanelFromDatabase({panel, pool})
-    res.send(data).status(200)
+    const propIds: PropId[] = await getPropIdsInPanelFromDatabase(panel, pool)
+    res.send(propIds).status(200)
 
 }
