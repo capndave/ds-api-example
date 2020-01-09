@@ -20,7 +20,7 @@ export function getSignatureFile(fileId: number): Promise<Buffer> {
     fs.readFile(fileName, (error: Error, data: Buffer) => {
       if (error) {
         reject(
-          `Error reading file in getSignatureFiles [23]: ${error}`
+          `getSignatureFiles [23]: ${error}`
         )
       }
       resolve(data)
@@ -38,7 +38,6 @@ export function getSignatureFile(fileId: number): Promise<Buffer> {
 export default async function getSignatureFiles(
   fileIds: number[]
 ): Promise<Buffer[]> {
-  console.log(fileIds)
   try {
     return await Promise.all(
       fileIds.map(fileId => {
