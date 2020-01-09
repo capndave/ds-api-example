@@ -4,23 +4,23 @@ import getSignatureFileName from './getSignatureFileName'
 
 /**
  * A module for fetching board member signatures from the file system.
- * @module getBoardMemberSignaturesFromFileSystem
+ * @module getSignatureFiles
  */
 
 /**
  * Reads a file (representing a signature) from the file system.
- * @method getBoardMemberSignatureFromFileSystem
- * @param { number } boardMemberid
+ * @method getSignatureFile
+ * @param { number } fileId
  * @returns { Promise<Buffer> }
  */
-export function getSignatureFile(boardMemberId: number): Promise<Buffer> {
+export function getSignatureFile(fileId: number): Promise<Buffer> {
   return new Promise((resolve, reject) => {
-    const fileName = getSignatureFileName(boardMemberId)
+    const fileName = getSignatureFileName(fileId)
 
     fs.readFile(fileName, (error: Error, data: Buffer) => {
       if (error) {
         reject(
-          `Error reading file in getBoardMemberSignaturesFromFileSystem: ${error}`
+          `Error reading file in getSignatureFiles [23]: ${error}`
         )
       }
       resolve(data)
@@ -31,7 +31,7 @@ export function getSignatureFile(boardMemberId: number): Promise<Buffer> {
 /**
  * Recieves an array of fileIds and
  * calls getSignatureFile for all of them
- * @function getSignatureFiles
+ * @alias getSignatureFiles
  * @param { number[] } fileIds
  * @returns { Promise.<Buffer[]> }
  */
