@@ -14,8 +14,11 @@ describe('the getProtestYearsFromDatabase function', () => {
   })
   it('returns some result', async () => {
     try {
-      const { recordset } = await getProtestYearsFromDatabase(188749, pool)
-      expect(typeof recordset).toBe('array')
+      const result: mssql.IResult<any> = await getProtestYearsFromDatabase(
+        188749,
+        pool
+      )
+      expect(typeof result.recordset).toBe('array')
     } catch (e) {
       throw e
     }
