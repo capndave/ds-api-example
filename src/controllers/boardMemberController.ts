@@ -49,12 +49,12 @@ export async function getBoardMemberNamesAndSignaturesForPanel(
   const pool: any = req.app.locals.pool
   const {
     recordset
-  }: { recordset: FullNameAndId[] } = await getBoardMembersFromDatabaseForPanel(
+  }: { recordset: Promise<any> } = await getBoardMembersFromDatabaseForPanel(
     panel,
     pool
   )
   const ids: number[] = recordset.map(
-    boardMember => boardMember.board_member_id
+    (boardMember: any) => boardMember.board_member_id
   )
   const signatures: Buffer[] = await getSignatureFiles(ids)
   const fullNamesIdsAndSignatures: fullNameIdAndSignature[] = mergeSignaturesWithFullNamesAndIds(

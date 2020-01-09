@@ -1,6 +1,6 @@
 import logger from '../../logger/logger'
 import sql from 'mssql'
-import PropId from '../../models/board/boardMember.model'
+import { PropId }  from '../../models/board/boardMember.model'
 
 /**
  * A module which gets the property ids from the database
