@@ -12,5 +12,8 @@
       "*": ["node_modules/", "src/types/*"]
     }
   },
-  "include": ["src/**/*", "tests/services/makeForm/makeForm.test.js"]
+  "include": [
+    "src/**/*.ts",
+    // "tests/**/*.ts"
+  ],
 }

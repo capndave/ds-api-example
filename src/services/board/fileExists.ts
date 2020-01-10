@@ -2,7 +2,6 @@
   
   /**
    * Check whether a signature file exists for a boardMemberId.
-   * @async
    * @function
    * @param { string } fileName
    */

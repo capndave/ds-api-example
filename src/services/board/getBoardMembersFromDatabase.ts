@@ -1,6 +1,6 @@
 import logger from '../../logger/logger'
-import sql from 'mssql'
 import { FullName, FullNameAndId } from '../../models/board/boardMember.model'
+import { ConnectionPool } from 'mssql'
 
 /**
  * A module which gets board members from the database
@@ -12,11 +12,10 @@ import { FullName, FullNameAndId } from '../../models/board/boardMember.model'
  * @async
  * @method all
  * @param { object } pool - A sql connection pool
- * @returns { Promise<[{ full_name: string }]> }
  */
 export async function getAllBoardMemberNamesAndIdsFromDatabase(
-  pool: any
-): Promise<[{ full_name: string }]> {
+  pool: IPool
+): any  {
   try {
     return await pool.request().execute('ma_get_board_members')
   } catch (error) {

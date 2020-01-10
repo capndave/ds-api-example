@@ -14,6 +14,14 @@ export default class BoardMember {
     }
 }
 
+export class FullName {
+    full_name: string
+
+    constructor(input?: any) {
+      this.full_name = this.full_name
+    }
+}
+
 export class FullNameAndId {
     board_member_id: number
     full_name: string
