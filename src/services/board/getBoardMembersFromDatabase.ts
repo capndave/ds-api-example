@@ -1,6 +1,6 @@
 import logger from '../../logger/logger'
 import { FullName, FullNameAndId } from '../../models/board/boardMember.model'
-import { ConnectionPool } from 'mssql'
+import { ConnectionPool, IResult, TinyInt } from 'mssql'
 
 /**
  * A module which gets board members from the database
@@ -10,12 +10,13 @@ import { ConnectionPool } from 'mssql'
 /**
  * Get the names of all board members from the database.
  * @async
- * @method all
- * @param { object } pool - A sql connection pool
+ * @method getAllBoardMemberNamesAndIdsFromDatabase
+ * @param { ConnectionPool } pool - A sql connection pool
+ * @returns { }
  */
 export async function getAllBoardMemberNamesAndIdsFromDatabase(
-  pool: IPool
-): any  {
+  pool: ConnectionPool
+): Promise<IResult<any>> {
   try {
     return await pool.request().execute('ma_get_board_members')
   } catch (error) {
@@ -28,18 +29,18 @@ export async function getAllBoardMemberNamesAndIdsFromDatabase(
 /**
  * Get the names of all board members that are expected in a panel from the database.
  * @async
- * @method forPanel
+ * @method getBoardMemberNamesAndIdsFromDatabaseForPanel
  * @param { number } panel
- * @param { object } pool - A sql connection pool
+ * @param { ConnectionPool } pool
  */
 export async function getBoardMemberNamesAndIdsFromDatabaseForPanel(
   panel: number,
-  pool: any
-): Promise<any> {
+  pool: ConnectionPool
+): Promise<IResult<any>> {
   try {
     return await pool
       .request()
-      .input('panel', sql.TinyInt, panel)
+      .input('panel', TinyInt, panel)
       .execute('ma_get_board_member_names_and_ids_for_panel')
   } catch (error) {
     logger.error(

@@ -1,5 +1,5 @@
 //TODO: Finish boardMemberController
-import express from 'express'
+import {Request, Response} from 'express'
 import mssql from 'mssql'
 import {
   getAllBoardMemberNamesAndIdsFromDatabase,
@@ -25,12 +25,12 @@ import prettyPrintObject from '../services/utilities/prettyPrintObject'
  * and sends data with the response object
  * @async
  * @method
- * @param { express.Request } req
- * @param { express.Response } res
+ * @param { Request } req
+ * @param { Response } res
  */
 export async function getBoardMembers(
-  req: express.Request,
-  res: express.Response
+  req: Request,
+  res: Response
 ) {
   const pool: any = req.app.locals.pool
   const { recordset }: any = await getAllBoardMemberNamesAndIdsFromDatabase(pool)
