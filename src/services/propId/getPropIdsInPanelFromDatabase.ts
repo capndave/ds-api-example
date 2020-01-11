@@ -1,20 +1,19 @@
 import logger from '../../logger/logger'
 import sql from 'mssql'
-import { PropId }  from '../../models/board/boardMember.model'
-
-/**
- * A module which gets the property ids from the database
- * @module getPropIdsInPanelFromDatabase
- */
+import { IPropId }  from '../../interfaces'
 
 /**
  * Get the prop id's in a panel from the database.
- * @alias module:getPropIdsInPanelFromDatabase
+ * @async
+ * @function getPropIdsInPanelFromDatabase
+ * @param { number } panel
+ * @param { ConnectionPool } pool
+ * @returns { Promise<IPropId[]> }
  */
 export default async function getPropIdsInPanelFromDatabase(
   panel: number,
   pool: any
-): Promise<PropId[]> {
+): Promise<IPropId[]> {
   try {
     const { recordset } = await pool
       .request()
@@ -23,7 +22,7 @@ export default async function getPropIdsInPanelFromDatabase(
     return recordset
   } catch (error) {
     logger.error(
-      `Error fetching propId's in getPropIdsInPanelFromDatabase [7]: ${error}`
+      `Error fetching propId's in getPropIdsInPanelFromDatabase [25]: ${error}`
     )
   }
 }
