@@ -1,3 +1,3 @@
-export default interface PropId {
+export interface IPropId {
     prop_id: number
 }

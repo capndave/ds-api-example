@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 import { ConnectionPool } from 'mssql'
-import getPropIdsInPanelFromDatabase from '../services/board/getPropIdsInPanelFromDatabase'
-import PropId  from '../interfaces/propId.interface'
+import { IPropId } from '../interfaces/'
+import getPropIdsInPanelFromDatabase from '../services/propId/getPropIdsInPanelFromDatabase'
 
  /**
   * Extracts the panel number and connection pool from the request object,
@@ -12,12 +12,12 @@ import PropId  from '../interfaces/propId.interface'
   * @param { Request } req
   * @param { Response } res
   */
-export async function getPropIdsInPanel(req: Request, res: Response) {
+export async function getPropIdsInPanel(req: Request, res: Response): Promise<void> {
 
     const panel: number = parseInt(req.params.panel)
     const pool: ConnectionPool = req.app.locals.pool
 
-    const propIds: PropId[] = await getPropIdsInPanelFromDatabase(panel, pool)
+    const propIds: IPropId[] = await getPropIdsInPanelFromDatabase(panel, pool)
     res.send(propIds).status(200)
 
 }
