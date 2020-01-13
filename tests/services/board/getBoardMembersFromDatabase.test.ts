@@ -1,7 +1,10 @@
 import mssql from 'mssql'
 import database from '../../../src/database/database'
 import { IFullNameAndId } from '../../../src/interfaces'
-import { getAllBoardMemberNamesAndIdsFromDatabase, getBoardMemberNamesAndIdsFromDatabaseForPanel } from '../../../src/services/board/getBoardMembersFromDatabase'
+import {
+  getAllBoardMemberNamesAndIdsFromDatabase,
+  getBoardMemberNamesAndIdsFromDatabaseForPanel
+} from '../../../src/services/board/getBoardMembersFromDatabase'
 
 let pool: mssql.ConnectionPool
 
@@ -18,7 +21,7 @@ describe('the getAllBoardMemberNamesAndIdsFromDatabase function', () => {
       const recordset: IFullNameAndId[] = await getAllBoardMemberNamesAndIdsFromDatabase(
         pool
       )
-      expect(typeof recordset).toBe('array')
+      expect(typeof recordset).toBe('object')
     } catch (e) {
       throw e
     }
@@ -27,7 +30,9 @@ describe('the getAllBoardMemberNamesAndIdsFromDatabase function', () => {
 
 describe('the getBoardMemberNamesAndIdsFromDatabaseForPanel function', () => {
   it('is a function', () => {
-    expect(typeof getBoardMemberNamesAndIdsFromDatabaseForPanel).toBe('function')
+    expect(typeof getBoardMemberNamesAndIdsFromDatabaseForPanel).toBe(
+      'function'
+    )
   })
   it('returns some result', async () => {
     try {
@@ -35,7 +40,7 @@ describe('the getBoardMemberNamesAndIdsFromDatabaseForPanel function', () => {
         4,
         pool
       )
-      expect(typeof recordset).toBe('array')
+      expect(typeof recordset).toBe('object')
     } catch (e) {
       throw e
     }
