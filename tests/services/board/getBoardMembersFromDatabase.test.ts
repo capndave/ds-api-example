@@ -12,6 +12,10 @@ beforeAll(async () => {
   pool = await database()
 })
 
+afterAll(async () => {
+  pool.close()
+})
+
 describe('the getAllBoardMemberNamesAndIdsFromDatabase function', () => {
   it('is a function', () => {
     expect(typeof getAllBoardMemberNamesAndIdsFromDatabase).toBe('function')
@@ -23,6 +27,26 @@ describe('the getAllBoardMemberNamesAndIdsFromDatabase function', () => {
       )
       console.log(recordset)
       expect(typeof recordset).toBe('object')
+    } catch (e) {
+      throw e
+    }
+  })
+  it('returns at least one result with a board_member_id and full_name properties', async () => {
+    try {
+      // get records
+      const recordset: IFullNameAndId[] = await getBoardMemberNamesAndIdsFromDatabaseForPanel(
+        5,
+        pool
+      )
+
+      // define test condition
+      const hasIdAndNameProps = [
+        'board_member_id',
+        'full_name'
+      ].every(property => recordset[0].hasOwnProperty(property))
+
+      // test
+      expect(hasIdAndNameProps).toBe(true)
     } catch (e) {
       throw e
     }
@@ -46,14 +70,22 @@ describe('the getBoardMemberNamesAndIdsFromDatabaseForPanel function', () => {
       throw e
     }
   })
-  it('returns an object with a ___ property', async () => {
+  it('returns at least one result with a board_member_id and full_name properties', async () => {
     try {
+      // get records
       const recordset: IFullNameAndId[] = await getBoardMemberNamesAndIdsFromDatabaseForPanel(
-        4,
+        5,
         pool
       )
-      console.log(recordset)
-      expect(typeof recordset).toBe('object')
+
+      // define test condition
+      const hasIdAndNameProps = [
+        'board_member_id',
+        'full_name'
+      ].every(property => recordset[0].hasOwnProperty(property))
+
+      // test
+      expect(hasIdAndNameProps).toBe(true)
     } catch (e) {
       throw e
     }
