@@ -16,7 +16,7 @@ describe('the getAllBoardMemberNamesAndIdsFromDatabase function', () => {
   it('is a function', () => {
     expect(typeof getAllBoardMemberNamesAndIdsFromDatabase).toBe('function')
   })
-  it('returns some result', async () => {
+  it('returns an object', async () => {
     try {
       const recordset: IFullNameAndId[] = await getAllBoardMemberNamesAndIdsFromDatabase(
         pool
@@ -34,12 +34,24 @@ describe('the getBoardMemberNamesAndIdsFromDatabaseForPanel function', () => {
       'function'
     )
   })
-  it('returns some result', async () => {
+  it('returns an object', async () => {
     try {
       const recordset: IFullNameAndId[] = await getBoardMemberNamesAndIdsFromDatabaseForPanel(
         4,
         pool
       )
+      expect(typeof recordset).toBe('object')
+    } catch (e) {
+      throw e
+    }
+  })
+  it('returns an object with a ___ property', async () => {
+    try {
+      const recordset: IFullNameAndId[] = await getBoardMemberNamesAndIdsFromDatabaseForPanel(
+        4,
+        pool
+      )
+      console.log(recordset)
       expect(typeof recordset).toBe('object')
     } catch (e) {
       throw e
