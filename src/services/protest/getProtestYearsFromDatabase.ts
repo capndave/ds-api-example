@@ -11,6 +11,7 @@ const fileName = path.basename(__filename)
  * @function getProtestYearsFromDatabase
  * @param { object } pool - A sql connection pool
  * @returns { Promise<number[]> } protestYears
+ * @remarks tested
  */
 export default async function getProtestYearsFromDatabase(
   propId: number,
