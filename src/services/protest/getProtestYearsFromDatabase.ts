@@ -1,6 +1,6 @@
 import mssql from 'mssql'
 import path from 'path'
-import { IPropValYr } from '../../interfaces'
+import { IPropValYear } from '../../interfaces'
 import logger from '../../logger/logger'
 
 const fileName = path.basename(__filename)
@@ -15,7 +15,7 @@ const fileName = path.basename(__filename)
 export default async function getProtestYearsFromDatabase(
   propId: number,
   pool: mssql.ConnectionPool
-): Promise<IPropValYr[]> {
+): Promise<IPropValYear[]> {
   try {
     const { recordset } = await pool
       .request()
