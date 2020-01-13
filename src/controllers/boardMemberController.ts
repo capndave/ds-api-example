@@ -70,7 +70,6 @@ export async function getBoardMemberNamesAndSignaturesForPanel(
     recordset,
     signatures
   )
-  // console.log(fullNamesIdsAndSignatures)
 
   res.send(fullNamesIdsAndSignatures).status(200)
 }
