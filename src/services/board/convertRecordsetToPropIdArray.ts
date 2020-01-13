@@ -1,12 +1,12 @@
 import logger from '../../logger/logger'
-import { PropId } from '../../models/board/boardMember.model'
+import { IPropId } from '../../interfaces'
 
 /**
  * Get the prop id's in a panel from the database.
  * @function convertRecordsetToPropIdArray
  */
 export default function convertRecordsetToPropIdArray(
-  recordset: PropId[]
+  recordset: IPropId[]
 ): number[] {
     return recordset.map(record => record.prop_id)
 }
