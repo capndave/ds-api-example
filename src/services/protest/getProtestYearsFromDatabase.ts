@@ -1,5 +1,6 @@
 import mssql from 'mssql'
 import path from 'path'
+import { IPropValYr } from '../../interfaces'
 import logger from '../../logger/logger'
 
 const fileName = path.basename(__filename)
@@ -13,16 +14,17 @@ const fileName = path.basename(__filename)
  */
 export default async function getProtestYearsFromDatabase(
   propId: number,
-  pool: any
-): Promise<any> {
+  pool: mssql.ConnectionPool
+): Promise<IPropValYr[]> {
   try {
-    return await pool
+    const { recordset } = await pool
       .request()
       .input('prop_id', mssql.Int, propId)
       .execute('ma_get_protest_years_for_prop_id')
+    return recordset
   } catch (error) {
     logger.error(
-      `Error fetching data from database in ${fileName} [21]: ${error}`
+      `Error fetching data from database in ${fileName} [25]: ${error}`
     )
   }
 }

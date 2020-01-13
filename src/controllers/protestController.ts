@@ -1,6 +1,6 @@
 import getProtestYearsFromDatabase from '../services/protest/getProtestYearsFromDatabase'
 import getProtestDataFromDatabase from '../services/protest/getProtestDataFromDatabase'
-import express from 'express'
+import { Request, Response} from 'express'
 
 /**
  * A module for working with prop id data.
@@ -13,10 +13,10 @@ import express from 'express'
   * and sends data with the response object
   * @async
   * @method
-  * @param { express.Request } req
-  * @param { express.Response } res
+  * @param { Request } req
+  * @param { Response } res
   */
-export async function getProtestYears(req: express.Request, res: express.Response) {
+export async function getProtestYears(req: Request, res: Response) {
 
     const panel: number = parseInt(req.params.panel)
     const pool: any = req.app.locals.pool
@@ -32,11 +32,11 @@ export async function getProtestYears(req: express.Request, res: express.Respons
   * and sends data with the response object
   * @async
   * @method
-  * @param { express.Request } req
-  * @param { express.Response } res
+  * @param { Request } req
+  * @param { Response } res
   */
 
-export async function getProtestData(req: express.Request, res: express.Response) {
+export async function getProtestData(req: Request, res: Response) {
     const propId: number = parseInt(req.params.propId)
     const year: number = parseInt(req.query.year)
     const pool: any = req.app.locals.pool
@@ -54,7 +54,7 @@ export async function getProtestData(req: express.Request, res: express.Response
   * @param { Request } req
   * @param { Response } res
   */
-exports.postProtestData = async function (req: express.Request, res: express.Response) {
+exports.postProtestData = async function (req: Request, res: Response) {
 
     const pool: any = req.app.locals.pool
 

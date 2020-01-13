@@ -1,6 +1,7 @@
 //TODO: Finish boardMemberController
-import {Request, Response} from 'express'
+import { Request, Response } from 'express'
 import { ConnectionPool } from 'mssql'
+import { IFullNameAndId, IFullNameIdAndSignature } from '../interfaces'
 import {
   getAllBoardMemberNamesAndIdsFromDatabase,
   getBoardMemberNamesAndIdsFromDatabaseForPanel
@@ -8,11 +9,7 @@ import {
 import getSignatureFiles from '../services/board/getSignatureFiles'
 import saveSignatureFile from '../services/board/saveSignatureFile'
 import mergeSignaturesWithFullNamesAndIds from '../services/board/mergeSignaturesWithFullNamesAndIds'
-import BoardMember, {
-  FullNameAndId,
-  FullNameIdAndSignature,
-  FullName
-} from '../models/board/boardMember.model'
+
 import prettyPrintObject from '../services/utilities/prettyPrintObject'
 
 /**
@@ -28,13 +25,13 @@ import prettyPrintObject from '../services/utilities/prettyPrintObject'
  * @method
  * @param { Request } req
  * @param { Response } res
+ * @remarks testing
  */
-export async function getBoardMembers(
-  req: Request,
-  res: Response
-) {
+export async function getBoardMembers(req: Request, res: Response) {
   const pool: ConnectionPool = req.app.locals.pool
-  const namesAndIds: FullNameAndId[] = await getAllBoardMemberNamesAndIdsFromDatabase(pool)
+  const namesAndIds: IFullNameAndId[] = await getAllBoardMemberNamesAndIdsFromDatabase(
+    pool
+  )
   res.send(namesAndIds).status(200)
 }
 
@@ -57,16 +54,15 @@ export async function getBoardMemberNamesAndSignaturesForPanel(
   const panel: number = parseInt(req.params.panel)
   const pool: ConnectionPool = req.app.locals.pool
 
-  const { recordset }: { recordset: FullNameAndId[] }
-    = await getBoardMemberNamesAndIdsFromDatabaseForPanel(
+  const recordset: IFullNameAndId[] = await getBoardMemberNamesAndIdsFromDatabaseForPanel(
     panel,
     pool
   )
   const ids: number[] = recordset.map(
-    (boardMember: any) => boardMember.board_member_id
+    (record: IFullNameAndId) => record.board_member_id
   )
   const signatures: Buffer[] = await getSignatureFiles(ids)
-  const fullNamesIdsAndSignatures: FullNameIdAndSignature[] = mergeSignaturesWithFullNamesAndIds(
+  const fullNamesIdsAndSignatures: IFullNameIdAndSignature[] = mergeSignaturesWithFullNamesAndIds(
     recordset,
     signatures
   )
