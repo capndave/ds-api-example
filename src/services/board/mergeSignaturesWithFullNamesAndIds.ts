@@ -1,6 +1,5 @@
-export {} // Tell typescript to recognize imported modules as in this scope
 import logger from '../../logger/logger'
-import { FullNameIdAndSignature } from '../../models/board/boardMember.model'
+import { FullNameIdAndSignature } from '../../models'
 import { IFullNameAndId } from '../../interfaces'
 
 /**
