@@ -1,5 +1,6 @@
 import mssql from 'mssql'
 import database from '../../../src/database/database'
+import { IFullNameAndId } from '../../../src/interfaces'
 import { getAllBoardMemberNamesAndIdsFromDatabase, getBoardMemberNamesAndIdsFromDatabaseForPanel } from '../../../src/services/board/getBoardMembersFromDatabase'
 
 let pool: mssql.ConnectionPool
@@ -14,10 +15,10 @@ describe('the getAllBoardMemberNamesAndIdsFromDatabase function', () => {
   })
   it('returns some result', async () => {
     try {
-      const result: mssql.IResult<any> = await getAllBoardMemberNamesAndIdsFromDatabase(
+      const recordset: IFullNameAndId[] = await getAllBoardMemberNamesAndIdsFromDatabase(
         pool
       )
-      expect(typeof result.recordset).toBe('array')
+      expect(typeof recordset).toBe('array')
     } catch (e) {
       throw e
     }
@@ -30,11 +31,11 @@ describe('the getBoardMemberNamesAndIdsFromDatabaseForPanel function', () => {
   })
   it('returns some result', async () => {
     try {
-      const result: mssql.IResult<any> = await getBoardMemberNamesAndIdsFromDatabaseForPanel(
+      const recordset: IFullNameAndId[] = await getBoardMemberNamesAndIdsFromDatabaseForPanel(
         4,
         pool
       )
-      expect(typeof result.recordset).toBe('array')
+      expect(typeof recordset).toBe('array')
     } catch (e) {
       throw e
     }
