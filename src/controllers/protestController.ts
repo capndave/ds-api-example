@@ -35,16 +35,16 @@ export async function getProtestYears(req: Request, res: Response) {
   * @param { Request } req
   * @param { Response } res
   */
+// TODO: Finish this!
+// export async function getProtestData(req: Request, res: Response) {
+//     const propId: number = parseInt(req.params.propId)
+//     const year: number = parseInt(req.query.year)
+//     const pool: any = req.app.locals.pool
 
-export async function getProtestData(req: Request, res: Response) {
-    const propId: number = parseInt(req.params.propId)
-    const year: number = parseInt(req.query.year)
-    const pool: any = req.app.locals.pool
+//     const { recordset }: any = await getProtestDataFromDatabase({panel, year, pool})
+//     res.send(recordset).status(200)
 
-    const { recordset }: any = await getProtestDataFromDatabase({panel, year, pool})
-    res.send(recordset).status(200)
-
-}
+// }
  
 /**
   * Extracts the prop id, year and connection pool from the request object,
@@ -54,11 +54,12 @@ export async function getProtestData(req: Request, res: Response) {
   * @param { Request } req
   * @param { Response } res
   */
-exports.postProtestData = async function (req: Request, res: Response) {
+ // TODO: Finish this!
+// exports.postProtestData = async function (req: Request, res: Response) {
 
-    const pool: any = req.app.locals.pool
+//     const pool: any = req.app.locals.pool
 
-    const { recordset }: any = await postProtestDataToDatabase(req.body, pool)
-    res.send(recordset).status(200)
+//     const { recordset }: any = await postProtestDataToDatabase(req.body, pool)
+//     res.send(recordset).status(200)
 
-}
+// }
