@@ -1,6 +1,7 @@
 export {} // Tell typescript to recognize imported modules as in this scope
 import logger from '../../logger/logger'
-import { FullNameAndId, FullNameIdAndSignature } from '../../models/board/boardMember.model'
+import { FullNameIdAndSignature } from '../../models/board/boardMember.model'
+import { IFullNameAndId } from '../../interfaces'
 
 /**
  * Merges name and signature data into an object
@@ -10,7 +11,7 @@ import { FullNameAndId, FullNameIdAndSignature } from '../../models/board/boardM
  * @return { BoardMember[] }
  */
 export default function mergeSignaturesIntoBoardMembersArr(
-  fullNamesAndIds: FullNameAndId[],
+  fullNamesAndIds: IFullNameAndId[],
   signatures: Buffer[]
 ): FullNameIdAndSignature[] {
   let boardMembers = []

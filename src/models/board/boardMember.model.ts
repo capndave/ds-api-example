@@ -22,12 +22,14 @@ export class FullName {
     }
 }
 
-export class FullNameAndId {
+export class FullNameIdAndSignature {
     board_member_id: number
     full_name: string
+    signature: Buffer
 
     constructor(input?: any) {
       this.board_member_id = this.board_member_id
       this.full_name = this.full_name
+      this.signature = this.signature
     }
 }
