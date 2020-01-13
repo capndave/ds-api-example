@@ -1,5 +1,5 @@
 import logger from '../../logger/logger'
-import { FullName, FullNameAndId } from '../../models/board/boardMember.model'
+import { IFullNameAndId, IFullNameIdAndSignature } from '../../interfaces'
 import { ConnectionPool, IResult, TinyInt } from 'mssql'
 
 /**
@@ -16,7 +16,7 @@ import { ConnectionPool, IResult, TinyInt } from 'mssql'
  */
 export async function getAllBoardMemberNamesAndIdsFromDatabase(
   pool: ConnectionPool
-): Promise<FullNameAndId[]> {
+): Promise<IFullNameAndId[]> {
   try {
     const { recordset } = await pool.request().execute('ma_get_board_members')
     return recordset
@@ -37,12 +37,13 @@ export async function getAllBoardMemberNamesAndIdsFromDatabase(
 export async function getBoardMemberNamesAndIdsFromDatabaseForPanel(
   panel: number,
   pool: ConnectionPool
-): Promise<IResult<any>> {
+): Promise<IFullNameAndId[]> {
   try {
-    return await pool
+    const { recordset } = await pool
       .request()
       .input('panel', TinyInt, panel)
       .execute('ma_get_board_member_names_and_ids_for_panel')
+    return recordset
   } catch (error) {
     logger.error(
       `Error fetching data from database in getBoardMembersFromDatabase [44]: ${error}`
