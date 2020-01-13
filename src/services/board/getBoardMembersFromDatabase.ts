@@ -8,6 +8,7 @@ import { ConnectionPool, IResult, TinyInt } from 'mssql'
  * @function getAllBoardMemberNamesAndIdsFromDatabase
  * @param { ConnectionPool } pool - A sql connection pool
  * @returns { Promise<IFullNameAndId> } recordset
+ * @remarks tested
  */
 export async function getAllBoardMemberNamesAndIdsFromDatabase(
   pool: ConnectionPool
@@ -31,6 +32,7 @@ export async function getAllBoardMemberNamesAndIdsFromDatabase(
  * @param { number } panel
  * @param { ConnectionPool } pool
  * @returns { Promise<IFullNameAndId[] }
+ * @remarks tested
  */
 export async function getBoardMemberNamesAndIdsFromDatabaseForPanel(
   panel: number,
