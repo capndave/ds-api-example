@@ -3,16 +3,11 @@ import { IFullNameAndId } from '../../interfaces'
 import { ConnectionPool, IResult, TinyInt } from 'mssql'
 
 /**
- * A module which gets board members from the database
- * @module getBoardMembersFromDatabase
- */
-
-/**
  * Get the names of all board members from the database.
  * @async
- * @method getAllBoardMemberNamesAndIdsFromDatabase
+ * @function getAllBoardMemberNamesAndIdsFromDatabase
  * @param { ConnectionPool } pool - A sql connection pool
- * @returns { }
+ * @returns { Promise<IFullNameAndId> } recordset
  */
 export async function getAllBoardMemberNamesAndIdsFromDatabase(
   pool: ConnectionPool
@@ -32,9 +27,10 @@ export async function getAllBoardMemberNamesAndIdsFromDatabase(
 /**
  * Get the names of all board members that are expected in a panel from the database.
  * @async
- * @method getBoardMemberNamesAndIdsFromDatabaseForPanel
+ * @function getBoardMemberNamesAndIdsFromDatabaseForPanel
  * @param { number } panel
  * @param { ConnectionPool } pool
+ * @returns { Promise<IFullNameAndId[] }
  */
 export async function getBoardMemberNamesAndIdsFromDatabaseForPanel(
   panel: number,
