@@ -28,8 +28,8 @@ export class FullNameIdAndSignature {
     signature: Buffer
 
     constructor(input?: any) {
-      this.board_member_id = this.board_member_id
-      this.full_name = this.full_name
-      this.signature = this.signature
+      this.board_member_id = input.board_member_id
+      this.full_name = input.full_name
+      this.signature = input.signature
     }
 }

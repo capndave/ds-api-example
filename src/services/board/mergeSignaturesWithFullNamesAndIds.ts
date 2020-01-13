@@ -4,12 +4,12 @@ import { IFullNameAndId } from '../../interfaces'
 
 /**
  * Merges name and signature data into an object
- * @function mergeBoardMemberIdsAndSignaturesIntoObject
+ * @function mergeSignaturesWithFullNamesAndIds
  * @param { number[] } ids
  * @param { Buffer[] } signatures
- * @return { BoardMember[] }
+ * @return { FullNameIdAndSignature[] }
  */
-export default function mergeSignaturesIntoBoardMembersArr(
+export default function mergeSignaturesWithFullNamesAndIds(
   fullNamesAndIds: IFullNameAndId[],
   signatures: Buffer[]
 ): FullNameIdAndSignature[] {

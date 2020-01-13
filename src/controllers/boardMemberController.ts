@@ -59,14 +59,19 @@ export async function getBoardMemberNamesAndSignaturesForPanel(
     panel,
     pool
   )
+
   const ids: number[] = recordset.map(
     (record: IFullNameAndId) => record.board_member_id
   )
+
   const signatures: Buffer[] = await getSignatureFiles(ids)
+
   const fullNamesIdsAndSignatures: FullNameIdAndSignature[] = mergeSignaturesWithFullNamesAndIds(
     recordset,
     signatures
   )
+  // console.log(fullNamesIdsAndSignatures)
+
   res.send(fullNamesIdsAndSignatures).status(200)
 }
 
@@ -89,12 +94,6 @@ export async function postBoardMemberNamesAndSignatures(
   const panel: number = parseInt(req.params.panel)
   const pool: ConnectionPool = req.app.locals.pool
 
-  console.log('here')
-
-  // // map request body to an array of BoardMember class
-  // const boardMembers: BoardMember[] = req.body.map(
-  //   boardMember => new BoardMember(boardMember)
-  // ) // assign to class
   prettyPrintObject(req.body.map)
 
   // TODO: Post board member names to db
