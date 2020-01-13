@@ -1,6 +1,6 @@
 //TODO: Finish boardMemberController
 import {Request, Response} from 'express'
-import mssql from 'mssql'
+import { ConnectionPool } from 'mssql'
 import {
   getAllBoardMemberNamesAndIdsFromDatabase,
   getBoardMemberNamesAndIdsFromDatabaseForPanel
@@ -10,7 +10,8 @@ import saveSignatureFile from '../services/board/saveSignatureFile'
 import mergeSignaturesWithFullNamesAndIds from '../services/board/mergeSignaturesWithFullNamesAndIds'
 import BoardMember, {
   FullNameAndId,
-  FullNameIdAndSignature
+  FullNameIdAndSignature,
+  FullName
 } from '../models/board/boardMember.model'
 import prettyPrintObject from '../services/utilities/prettyPrintObject'
 
@@ -32,9 +33,9 @@ export async function getBoardMembers(
   req: Request,
   res: Response
 ) {
-  const pool: any = req.app.locals.pool
-  const { recordset }: any = await getAllBoardMemberNamesAndIdsFromDatabase(pool)
-  res.send(recordset).status(200)
+  const pool: ConnectionPool = req.app.locals.pool
+  const namesAndIds: FullNameAndId[] = await getAllBoardMemberNamesAndIdsFromDatabase(pool)
+  res.send(namesAndIds).status(200)
 }
 
 /**
@@ -54,7 +55,7 @@ export async function getBoardMemberNamesAndSignaturesForPanel(
   res: Response
 ) {
   const panel: number = parseInt(req.params.panel)
-  const pool: any = req.app.locals.pool
+  const pool: ConnectionPool = req.app.locals.pool
 
   const { recordset }: { recordset: FullNameAndId[] }
     = await getBoardMemberNamesAndIdsFromDatabaseForPanel(
@@ -89,7 +90,7 @@ export async function postBoardMemberNamesAndSignatures(
   res: Response
 ) {
   const panel: number = parseInt(req.params.panel)
-  const pool: any = req.app.locals.pool
+  const pool: ConnectionPool = req.app.locals.pool
 
   console.log('here')
 

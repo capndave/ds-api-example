@@ -16,9 +16,10 @@ import { ConnectionPool, IResult, TinyInt } from 'mssql'
  */
 export async function getAllBoardMemberNamesAndIdsFromDatabase(
   pool: ConnectionPool
-): Promise<IResult<any>> {
+): Promise<FullNameAndId[]> {
   try {
-    return await pool.request().execute('ma_get_board_members')
+    const { recordset } = await pool.request().execute('ma_get_board_members')
+    return recordset
   } catch (error) {
     logger.error(
       `Error fetching data from database in getBoardMembersFromDatabase [23]: ${error}`
