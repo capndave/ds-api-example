@@ -8,13 +8,13 @@ import { IFullNameAndId } from '../../interfaces'
  * @param { number[] } ids
  * @param { Buffer[] } signatures
  * @return { FullNameIdAndSignature[] }
+ * @remarks tested
  */
 export default function mergeSignaturesWithFullNamesAndIds(
   fullNamesAndIds: IFullNameAndId[],
   signatures: Buffer[]
 ): FullNameIdAndSignature[] {
   let boardMembers = []
-
   for (let i = 0; i < fullNamesAndIds.length; i++) {
     boardMembers.push(
       new FullNameIdAndSignature({
@@ -24,6 +24,5 @@ export default function mergeSignaturesWithFullNamesAndIds(
       })
     )
   }
-
   return boardMembers
 }

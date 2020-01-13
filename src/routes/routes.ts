@@ -12,10 +12,8 @@ router.get('/panel/properties/:panel', propIdController.getPropIdsInPanel)
 router.get('/board/members', boardMemberController.getBoardMembers)
 router.get('/board/member/namesAndSignatures/:panel', boardMemberController.getBoardMemberNamesAndSignaturesForPanel)
 router.post('/board/member/namesAndSignatures', boardMemberController.postBoardMemberNamesAndSignatures)
-// router.get('/protest/years/:propId', protestController.getProtestYears)
+router.get('/protest/years/:propId', protestController.getProtestYears)
 // router.get('/protest/data/:propId', protestController.getProtestData)
-
-
 
 // router.get('/getExpectedBoardMemberNamesAndSignatures', boardMemberController.getBoardMembers)
 
