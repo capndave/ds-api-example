@@ -21,6 +21,7 @@ describe('the getAllBoardMemberNamesAndIdsFromDatabase function', () => {
       const recordset: IFullNameAndId[] = await getAllBoardMemberNamesAndIdsFromDatabase(
         pool
       )
+      console.log(recordset)
       expect(typeof recordset).toBe('object')
     } catch (e) {
       throw e

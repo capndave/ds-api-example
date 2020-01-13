@@ -18,7 +18,9 @@ export async function getAllBoardMemberNamesAndIdsFromDatabase(
   pool: ConnectionPool
 ): Promise<IFullNameAndId[]> {
   try {
-    const { recordset } = await pool.request().execute('ma_get_board_members')
+    const { recordset } = await pool
+      .request()
+      .execute('ma_get_all_board_member_names_and_ids')
     return recordset
   } catch (error) {
     logger.error(
