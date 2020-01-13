@@ -1,7 +1,8 @@
 //TODO: Finish boardMemberController
 import { Request, Response } from 'express'
 import { ConnectionPool } from 'mssql'
-import { IFullNameAndId, IFullNameIdAndSignature } from '../interfaces'
+import { IFullNameAndId } from '../interfaces'
+import { FullNameIdAndSignature } from '../models'
 import {
   getAllBoardMemberNamesAndIdsFromDatabase,
   getBoardMemberNamesAndIdsFromDatabaseForPanel
@@ -62,7 +63,7 @@ export async function getBoardMemberNamesAndSignaturesForPanel(
     (record: IFullNameAndId) => record.board_member_id
   )
   const signatures: Buffer[] = await getSignatureFiles(ids)
-  const fullNamesIdsAndSignatures: IFullNameIdAndSignature[] = mergeSignaturesWithFullNamesAndIds(
+  const fullNamesIdsAndSignatures: FullNameIdAndSignature[] = mergeSignaturesWithFullNamesAndIds(
     recordset,
     signatures
   )

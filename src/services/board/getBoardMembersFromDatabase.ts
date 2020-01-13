@@ -1,5 +1,5 @@
 import logger from '../../logger/logger'
-import { IFullNameAndId, IFullNameIdAndSignature } from '../../interfaces'
+import { IFullNameAndId } from '../../interfaces'
 import { ConnectionPool, IResult, TinyInt } from 'mssql'
 
 /**
