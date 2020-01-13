@@ -1,3 +1,5 @@
+import { Application } from "express"
+
 const fs = require('fs')
 const { promisify } = require('util')
 const logger = require('../logger/logger')
@@ -6,7 +8,7 @@ const logger = require('../logger/logger')
  * Add tls certificates to app options
  * @param {object} app - Express app
  */
-module.exports = function(app) {
+module.exports = function(app: Application) {
   const readFilePromise = promisify(fs.readFile)
   const getKey = readFilePromise('./tls/key.pem', {})
   const getCert = readFilePromise('./tls/cert.pem', {})
