@@ -50,8 +50,8 @@ export async function getBoardMembers(
  * @param { express.Response } res
  */
 export async function getBoardMemberNamesAndSignaturesForPanel(
-  req: express.Request,
-  res: express.Response
+  req: Request,
+  res: Response
 ) {
   const panel: number = parseInt(req.params.panel)
   const pool: any = req.app.locals.pool
@@ -85,8 +85,8 @@ export async function getBoardMemberNamesAndSignaturesForPanel(
  * @param { express.Response } res
  */
 export async function postBoardMemberNamesAndSignatures(
-  req: express.Request,
-  res: express.Response
+  req: Request,
+  res: Response
 ) {
   const panel: number = parseInt(req.params.panel)
   const pool: any = req.app.locals.pool
