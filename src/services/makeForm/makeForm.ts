@@ -59,7 +59,7 @@ class Form {
 
   private getPdfStreamFromHtml = async function(html: string) {
     try {
-      const options = (htmlPdf.CreateOptions = {
+      const options = ((htmlPdf as any).CreateOptions = {
         port: 9222,
         host: process.env.CHROME_SERVER
       })
