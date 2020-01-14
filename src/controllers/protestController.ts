@@ -15,10 +15,14 @@ import { Request, Response} from 'express'
   */
 export async function getProtestYears(req: Request, res: Response) {
 
-    const panel: number = parseInt(req.params.panel)
+  console.log('inside function')
+
+    const propId: number = parseInt(req.params.propId)
     const pool: any = req.app.locals.pool
 
-    const { recordset }: any = await getProtestYearsFromDatabase(panel, pool)
+    console.log(propId)
+
+    const { recordset }: any = await getProtestYearsFromDatabase(propId, pool)
     res.send(recordset).status(200)
 
 }

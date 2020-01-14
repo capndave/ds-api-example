@@ -1,18 +1,22 @@
 import express from 'express'
 const router = express.Router()
 import logger from '../logger/logger'
-import rootController from '../controllers/rootController'
-import * as propIdController from '../controllers/propIdController'
-import * as boardMemberController from '../controllers/boardMemberController'
-import * as protestController from '../controllers/protestController'
+import {
+    getPropIdsInPanel,
+    getBoardMembers,
+    getBoardMemberNamesAndSignaturesForPanel,
+    postBoardMemberNamesAndSignatures,
+    rootController,
+    getProtestYears
+} from '../controllers'
 
 /* GET */
 router.get('/', rootController)
-router.get('/panel/properties/:panel', propIdController.getPropIdsInPanel)
-router.get('/board/members', boardMemberController.getBoardMembers)
-router.get('/board/member/namesAndSignatures/:panel', boardMemberController.getBoardMemberNamesAndSignaturesForPanel)
-router.post('/board/member/namesAndSignatures', boardMemberController.postBoardMemberNamesAndSignatures)
-router.get('/protest/years/:propId', protestController.getProtestYears)
+router.get('/panel/properties/:panel', getPropIdsInPanel)
+router.get('/board/members', getBoardMembers)
+router.get('/board/member/namesAndSignatures/:panel', getBoardMemberNamesAndSignaturesForPanel)
+router.post('/board/member/namesAndSignatures', postBoardMemberNamesAndSignatures)
+router.get('/protest/years/:propId', getProtestYears)
 // router.get('/protest/data/:propId', protestController.getProtestData)
 
 // router.get('/getExpectedBoardMemberNamesAndSignatures', boardMemberController.getBoardMembers)
