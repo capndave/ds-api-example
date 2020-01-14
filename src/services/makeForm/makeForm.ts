@@ -57,7 +57,7 @@ class Form {
    * @returns {stream.Readable} - A readable stream of pdf data
    */
 
-  private getPdfStreamFromHtml = async function(html) {
+  private getPdfStreamFromHtml = async function(html: string) {
     try {
       const options = (htmlPdf.CreateOptions = {
         port: 9222,
@@ -80,7 +80,7 @@ class Form {
    * @returns {stream.Readable} - A readable stream of pdf data
    */
 
-  public generate = async function(data) {
+  public generate = async function(data: any) {
     try {
       if (!data) {
         throw new Error('Data is missing')
