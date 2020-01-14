@@ -3,23 +3,23 @@ export interface IPropValYear {
 }
 
 export interface IProtest {
-    prop_id: number 
-    prop_val_yr: number
-    prot_taxes_paid: boolean
-    late_protest_approved: boolean
-    late_protest_denial_reason: string
-    withdrawn: boolean
-    dismissed: boolean
-    prot_affidavit_testimony_recieved: boolean
-    moved_to_informal?: boolean
-    phone_hearing: boolean
+    affidavit: boolean
+    ag_hearing: boolean
     code_25_25_c: boolean
     code_25_25_d: boolean
     code_41_411: boolean
-    ag_hearing: boolean
-    exemption_hearing: boolean
-    value_hearing: boolean
-    market_value: number
+    dismissed: boolean
     equity_value: number
+    exemption_hearing: boolean
+    late_protest_approved: boolean
+    late_protest_denial_reason: string
+    market_value: number
+    moved_to_informal?: boolean
+    phone_hearing: boolean
+    prop_id: number 
+    prop_val_yr: number
+    prot_taxes_paid: boolean
     protest_status: string
+    value_hearing: boolean
+    withdrawn: boolean
 }
