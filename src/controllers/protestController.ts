@@ -1,7 +1,8 @@
+import { Request, Response} from 'express'
+import { IPropValYear } from '../interfaces'
 import getProtestYearsFromDatabase from '../services/protest/getProtestYearsFromDatabase'
 import getProtestDataFromDatabase from '../services/protest/getProtestDataFromDatabase'
 import postProtestDataToDatabase from '../services/protest/postProtestDataToDatabase'
-import { Request, Response} from 'express'
 
  /**
   * Extracts the prop id and connection pool from the request object,
@@ -15,14 +16,10 @@ import { Request, Response} from 'express'
   */
 export async function getProtestYears(req: Request, res: Response) {
 
-  console.log('inside function')
-
     const propId: number = parseInt(req.params.propId)
     const pool: any = req.app.locals.pool
 
-    console.log(propId)
-
-    const { recordset }: any = await getProtestYearsFromDatabase(propId, pool)
+    const recordset: IPropValYear[] = await getProtestYearsFromDatabase(propId, pool)
     res.send(recordset).status(200)
 
 }

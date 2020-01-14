@@ -1,4 +1,4 @@
-import mssql from 'mssql'
+import { ConnectionPool, Int } from 'mssql'
 import path from 'path'
 import { IPropValYear } from '../../interfaces'
 import logger from '../../logger/logger'
@@ -15,12 +15,13 @@ const fileName = path.basename(__filename)
  */
 export default async function getProtestYearsFromDatabase(
   propId: number,
-  pool: mssql.ConnectionPool
+  pool: ConnectionPool
 ): Promise<IPropValYear[]> {
   try {
+    console.log(propId)
     const { recordset } = await pool
       .request()
-      .input('prop_id', mssql.Int, propId)
+      .input('prop_id', Int, propId)
       .execute('ma_get_protest_years_for_prop_id')
     return recordset
   } catch (error) {
