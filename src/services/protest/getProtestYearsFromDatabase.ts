@@ -24,8 +24,6 @@ export default async function getProtestYearsFromDatabase(
       .execute('ma_get_protest_years_for_prop_id')
     return recordset
   } catch (error) {
-    logger.error(
-      `Error fetching data from database in ${fileName} [25]: ${error}`
-    )
+    throw new Error(`${fileName} [27]: ${error}`)
   }
 }

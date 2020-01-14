@@ -28,7 +28,11 @@ export default async function postProtestDataToDatabase(
       .input('equity_value', mssql.Int, input.equity_value)
       .input('exemption_hearing', mssql.Bit, input.exemption_hearing)
       .input('late_protest_approved', mssql.Bit, input.late_protest_approved)
-      .input('late_protest_denial_reason', mssql.VarChar(25), input.late_protest_denial_reason)
+      .input(
+        'late_protest_denial_reason',
+        mssql.VarChar(25),
+        input.late_protest_denial_reason
+      )
       .input('market_value', mssql.Int, input.market_value)
       .input('moved_to_informal', mssql.Bit, input.moved_to_informal)
       .input('phone_hearing', mssql.Bit, input.phone_hearing)
@@ -40,8 +44,6 @@ export default async function postProtestDataToDatabase(
       .input('withdrawn', mssql.Bit, input.withdrawn)
       .execute('ma_post_protest_data')
   } catch (error) {
-    throw new Error(
-      `${fileName} [21]: ${error}`
-    )
+    throw new Error(`${fileName} [47]: ${error}`)
   }
 }

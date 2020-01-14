@@ -1,6 +1,8 @@
-import logger from '../../logger/logger'
 import sql from 'mssql'
-import { IPropId }  from '../../interfaces'
+import { basename } from 'path'
+import { IPropId } from '../../interfaces'
+
+const fileName = basename(__filename)
 
 /**
  * Get the prop id's in a panel from the database.
@@ -21,8 +23,6 @@ export default async function getPropIdsInPanelFromDatabase(
       .execute('fa_get_prop_ids_in_panel')
     return recordset
   } catch (error) {
-    logger.error(
-      `Error fetching propId's in getPropIdsInPanelFromDatabase [25]: ${error}`
-    )
+    throw new Error(`${fileName} [28]: ${error}`)
   }
 }

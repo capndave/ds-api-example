@@ -24,8 +24,6 @@ export default async function getProtestDataFromDatabase(
       .execute('ma_get_protest_data')
     return recordset
   } catch (error) {
-    logger.error(
-      `Error fetching data from database in ${fileName} [23]: ${error}`
-    )
+    throw new Error(`${fileName} [27]: ${error}`)
   }
 }
