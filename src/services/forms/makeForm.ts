@@ -4,6 +4,8 @@ import { readFile } from 'fs'
 import { basename } from 'path'
 const communicationAffidavitTemplate =
   '../../templates/communicationAffidavitTemplate.hbs'
+const decisionSheetTemplate =
+  '../../templates/decisionSheetTemplate.hbs'
 
 const fileName = basename(__filename)
 
@@ -98,3 +100,4 @@ class Form {
 
 export default Form
 export const CommunicationAffidavit = new Form(communicationAffidavitTemplate)
+export const DecisionSheet = new Form(decisionSheetTemplate)

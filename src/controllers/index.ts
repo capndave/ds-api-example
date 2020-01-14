@@ -1,4 +1,5 @@
 export * from './boardMemberController'
+export * from './formsController'
 export * from './rootController'
 export * from './propIdController'
 export * from './protestController'

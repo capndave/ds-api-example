@@ -19,6 +19,7 @@ router.post('/board/member/namesAndSignatures', postBoardMemberNamesAndSignature
 router.get('/protest/years/:propId', getProtestYears)
 router.get('/protest/data/:propId/:year', getProtestData)
 router.get('/protest/data/:propId/:year', getProtestData)
+router.get('/forms/:propId/:year', getForms)
 
 // router.get('/getExpectedBoardMemberNamesAndSignatures', boardMemberController.getBoardMembers)
 
@@ -34,7 +35,6 @@ router.get('/protest/data/:propId/:year', getProtestData)
 // })
 
 // /* POST */
-
 
 // router.post('/postFormData', (req, res) => {
 //     controllers.postFormData

@@ -1,0 +1,465 @@
+<html dir="ltr" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ARBQ Decision Sheet</title>
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            height: 11in;
+            width: 8.5in;
+            padding: .25in;
+            display: flex;
+            flex-direction: column;
+            font-size: 15px;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        p {
+            margin: 3px 0;
+        }
+
+        .border {
+            border: 1px solid black;
+        }
+
+        .title {
+            text-align: center;
+        }
+
+        .title-main {
+            margin: 0;
+        }
+
+        .title-sub {
+            margin: 0;
+        }
+
+        .no-border {
+            border: 0;
+        }
+
+        .margin-top-34 {
+            margin-top: 34px;
+        }
+
+        .margin-top-30 {
+            margin-top: 30px;
+        }
+
+        .margin-top-24 {
+            margin-top: 24px;
+        }
+
+        .margin-top-18 {
+            margin-top: 18px;
+        }
+
+        .margin-top-12 {
+            margin-top: 12px;
+        }
+
+        .margin-top-6 {
+            margin-top: 6px;
+        }
+
+        .margin-top-3 {
+            margin-top: 3px;
+        }
+
+        .uppercase {
+            text-transform: uppercase;
+        }
+
+        .underline {
+            text-decoration: underline;
+        }
+
+        .float-right {
+            float: right;
+            text-align: right;
+        }
+
+        .text-align-right {
+            text-align: right;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .span2 {
+            grid-column: span 2;
+        }
+
+        .span3 {
+            grid-column: span 3;
+        }
+
+        .span4 {
+            grid-column: span 4;
+        }
+
+        .start2 {
+            grid-column-start: 2;
+        }
+
+        .grid-top-outer {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto auto;
+            text-align: left;
+        }
+
+        .grid-4-cols {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 245px;
+            text-align: left;
+        }
+
+        .grid-4-cols-2 {
+            display: grid;
+            grid-template-columns: 80px 130px 1fr 1fr;
+            text-align: left;
+        }
+
+        .grid-4-cols div {
+            padding: 3px;
+            6px;
+        }
+
+        .grid-top-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            padding: 0 6px
+        }
+
+        .grid-title {
+            font-weight: bold;
+            grid-column: 1 / span 1;
+        }
+
+        .grid-title-exception {
+            font-weight: bold;
+            grid-column: 1 / span 2;
+        }
+
+        .grid-content {
+            grid-column: 2 / span 3;
+        }
+
+
+        .grid-content-exception {
+            grid-column: 3 / span 2;
+        }
+
+        .checkbox {
+            display: inline-block;
+            height: 17px;
+            width: 17px;
+            margin-bottom: -3px;
+            margin-left: 6px;
+            margin-right: 3px;
+            border: 1px solid black;
+        }
+
+        .checkbox-lead {
+            display: inline-block;
+            height: 17px;
+            width: 17px;
+            margin-bottom: -3px;
+            margin-right: 3px;
+            border: 1px solid black;
+        }
+
+        .aside-left {
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin: 0;
+        }
+
+        .aside-right {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container-main"></div>
+
+    <!-- ///////// Panel information in upper right ////////// -->
+    <aside class="aside-right text-align-right">
+        <div class="bold">{{ prop_id_key }}</div>
+        {{#if isGroup}}
+        <div class="bold">
+            <span>{{placeInGroup}} of {{totInGroup}}</span>
+        </div>
+        {{/if}}
+        <div>Panel: {{ panel }}</div>
+    </aside>
+
+    <!-- ///////// Title and Subtitle ////////////////// -->
+    <header>
+        <h2 class="title title-main">Travis Appraisal Review Board Panel Recommendation to Full Board</h2>
+        <h3 class="title title-sub">(Recommendation Subject to Approval by Full TARB)</h3>
+    </header>
+
+    <!-- ///////// Section 1 ////////// -->
+    <section class="grid-top-outer margin-top-24">
+        <section class="grid-top-inner">
+            <p class="grid-title">Case ID:</p>
+            <p class="grid-content">${(new Date()).getFullYear()} - {{case_id}}</p>
+            <p class="grid-title">Prop ID:</p>
+            <p class="grid-content">{{prop_id}}</p>
+            <p class="grid-title">Owner:</p>
+            <p class="grid-content">{{owner}}</p>
+            <p class="grid-title">SITUS:</p>
+            <p class="grid-content">{{situs}}</p>
+        </section>
+        <section class="grid-top-inner">
+            <p class="grid-title">Legal Description:</p>
+            <p class="grid-content">{{legal_desc}} </p>
+        </section>
+        <section class="grid-top-inner margin-top-12">
+            <p class="grid-title">Protest Reasons:</p>
+            <p class="grid-content">{{ProtestDescriptions}}</p>
+        </section>
+        <section class="grid-top-inner margin-top-12">
+            <p class="grid-title">Market 1:</p>
+            <p class="grid-content">{{ market }}</p>
+        </section>
+        <section class="grid-top-inner margin-top-12">
+            <p class="grid-title">Agent ID:</p>
+            <p class="grid-content">{{agent_id}}</p>
+            <p class="grid-title">Agent Name:</p>
+            <p class="grid-content">{{agent_nm}}</p>
+            <p class="grid-title grid-title-exception">Agent Authority to Protest:</p>
+            <p class="grid-content grid-content-exception">{{AuthProtest}}</p>
+            <p class="grid-title grid-title-exception">Agent Authority to Resolve:</p>
+            <p class="grid-content grid-content-exception">{{AuthResolve}}</p>
+        </section>
+        <section class="grid-top-inner"></section>
+    </section>
+
+    <!-- ///////// Section 2 ////////// -->
+    <section class="margin-top-24">
+        <h3 class="title title-sub">{{deleted}}</h3>
+        <div class="grid-4-cols-2 margin-top-6">
+            <div class="start2 bold underline" style="text-align: center;">Current Year Value</div>
+            <div class="bold underline" style="text-align: center;">Recommended Market Value</div>
+            <div class="bold underline" style="text-align: center;">Recommended Equal Appraisal Value</div>
+            <div class="margin-top-6 bold float-right" style="padding: 1px 10px 0 0;">BPP</div>
+            <div class="margin-top-6 start2" style="text-align: center;">{{BPPValue}}</div>
+            <div class="margin-top-6" style="text-align: center;">____________________________________</div>
+            <div class="margin-top-6" style="text-align: center;">____________________________________</div>
+            <div class="margin-top-6 bold float-right" style="padding: 1px 10px 0 0;">Assessed</div>
+            <div class="margin-top-6 text-align-right" style="padding-right: 33%">{{assessed_val}}</div>
+            <div class="margin-top-6" style="text-align: center;">____________________________________</div>
+            <div class="margin-top-6" style="text-align: center;">____________________________________</div>
+            <div class="margin-top-6 bold float-right" style="padding: 1px 10px 0 0;">Market</div>
+            <div class="margin-top-6 text-align-right" style="padding-right: 33%">{{market}}</div>
+            <div class="margin-top-6" style="text-align: center;">____________________________________</div>
+            <div class="margin-top-6" style="text-align: center;">____________________________________</div>
+        </div>
+    </section>
+
+    <!-- ///////// Section 3 ////////// -->
+
+    <section class="grid-4-cols margin-top-30">
+        <div class="span4">
+            <span class="bold">Description of Late Protest:</span>
+            <span class="checkbox" style="margin-left: 14px;"></span>
+            <span>&sect;25.25(c)</span>
+            <span class="checkbox" style="margin-left: 38px;"></span>
+            <span>&sect;25.25(d)</span>
+            <span class="checkbox" style="margin-left: 38px;"></span>
+            <span>&sect;41.411</span>
+            <span style="margin-left: 38px;" class="bold">No Change In Value</span><span
+                class="align-right">_____________</span>
+        </div>
+        <div class="span4">
+            <span class="bold">Taxes Paid:</span>
+            <span class="checkbox"></span>
+            <span>Yes</span>
+            <span class="checkbox"></span>
+            <span>No</span>
+        </div>
+        <div class="span4">
+            <span class="bold">Late Hearing Denial Reason:</span>
+            <span class="checkbox"></span>
+            <span>Taxes Not Paid</span>
+            <span class="checkbox"></span>
+            <span>Notice Delivered</span>
+        </div>
+    </section>
+
+    <!-- ///////// Section 4 ////////// -->
+
+    <section class="margin-top-24">
+
+        <div>
+            <h3 class="title title-sub">Basis of TARB Decision (Check Only One Decision)</h3>
+        </div>
+
+
+        <!--Row 1-->
+        <div class="margin-top-6">
+            <span class="checkbox-lead"></span>
+            <span> 1. </span>
+            <span>The property's appraised value is excessive</span>
+        </div>
+
+        <!--Row 2-->
+        <div class="margin-top-6">
+            <span class="checkbox-lead"></span>
+            <span> 2. </span>
+            <span>The property's market value is excessive</span>
+        </div>
+
+        <!--Row 3-->
+        <div class="margin-top-6">
+            <span class="checkbox-lead"></span>
+            <span> 3. </span>
+            <span>The appraised or market value of market value of the subject property is NOT excessive</span>
+        </div>
+
+        <!--Row 4-->
+        <div class="margin-top-6">
+            <span class="checkbox-lead"></span>
+            <span> 4. </span>
+            <span>The subject property was unequally appraised</span>
+        </div>
+
+        <!--Row 5-->
+        <div class="margin-top-6">
+            <span class="checkbox-lead"></span>
+            <span> 5. </span>
+            <span>The subject property was NOT unequally appraised</span>
+        </div>
+
+        <!--Row 6-->
+        <div class="margin-top-6">
+            <span class="checkbox-lead"></span>
+            <span> 6. </span>
+            <span>The subject property qualified for the exemption for which application was made</span>
+        </div>
+
+        <!--Row 6A-->
+        <div class="margin-top-6">
+            <span class="checkbox-lead"></span>
+            <span> 6A. </span>
+            <span>The subject property did NOT qualify for the exemption for which application was made</span>
+        </div>
+
+        <!--Row 7-->
+        <div class="margin-top-6">
+            <span class="checkbox-lead"></span>
+            <span> 7. </span>
+            <span>The subject property qualified for special appraisal</span>
+        </div>
+
+        <!--Row 7A-->
+        <div class="margin-top-6">
+            <span class="checkbox-lead"></span>
+            <span> 7A. </span>
+            <span>The subject property did NOT qualify for special appraisal</span>
+        </div>
+
+        <!--Row 8-->
+        <div class="margin-top-6">
+            <span class="checkbox-lead"></span>
+            <span> 8. </span>
+            <span>The property owner's protest concerning other matters permitted by 41.41(a) is upheld.</span>
+        </div>
+
+        <!--Row 9-->
+        <div class="margin-top-6">
+            <span class="checkbox-lead"></span>
+            <span> 9. </span>
+            <span>The property owner's protest concerning other matters permitted by 41.41(a) is denied.</span>
+        </div>
+
+        <!--Row 10-->
+        <div class="margin-top-6">
+            <span class="checkbox-lead"></span>
+            <span> 10. </span>
+            <span>The TARB lacks jurisdiction to determine the protest and hereby dismisses the protest.</span>
+        </div>
+
+        <!--Row 11-->
+        <div class="margin-top-6">
+            <span class="checkbox-lead"></span>
+            <span> 11. </span>
+            <span>Appellant's motion under</span>
+            <span class="checkbox"></span>
+            <span>&sect;25.25(c) or</span>
+            <span class="checkbox"></span>
+            <span>&sect;25.25(d), </span>
+            <span class="bold">10% Penalty Applies,</span>
+            <span> is granted as follows. </span><br>
+        </div>
+
+        <!--Row 12-->
+        <div class="margin-top-6">
+            <span class="checkbox-lead"></span>
+            <span> 12. </span>
+            <span>Appellant's motion under</span>
+            <span class="checkbox"></span>
+            <span>&sect;25.25(c) or</span>
+            <span class="checkbox"></span>
+            <span>&sect;25.25(d), </span>
+            <span>is denied as follows. </span><br>
+        </div>
+    </section>
+
+    <!-- ///////// Section 5 ////////// -->
+
+    <section class="margin-top-30">
+        <!--Row 1-->
+        <div>
+            <span class="bold">Disposition: </span>
+            <span class="checkbox"></span>
+            <span>Held</span>
+            <span class="checkbox"></span>
+            <span>Affidavit/LOC</span>
+            <span class="checkbox"></span>
+            <span>Taxpayer/Appraiser Agreed</span>
+            <span class="checkbox"></span>
+            <span>Recess</span>
+            <span class="checkbox"></span>
+            <span>Dismissed</span>
+            <span class="checkbox"></span>
+            <span class="float-right">Withdrawn ________</span>
+        </div>
+
+        <!--Row 2-->
+        <div class="margin-top-24">
+            <span class="bold">Appraiser: </span>
+            <span class="underline">{{ appraiser_fullname }}</span>
+            <div class="float-right">
+                <span class="bold">Owner/Representative: </span>
+                <span>_______________________________</span>
+            </div>
+        </div>
+
+        <!--Row 3-->
+        <div class="margin-top-24">
+            <span class="bold">TARB Panel Chair Signature: </span>
+            <span>_______________________________</span>
+            <div class="float-right">
+                <span class="bold">Date: </span><span>__________</span><span
+                    class="underline">{{ date }}</span><span>__________</span>
+            </div>
+        </div>
+    </section>
+    </main>
+</body>
+
+</html>
