@@ -1,25 +1,24 @@
 import htmlPdf from 'html-pdf-chrome'
 import handlebars from 'handlebars'
 import { readFile } from 'fs'
-import decisionSheetHTML from '../../templates/decisionSheet'
-import communicationAffidavit from '../..templates/communicationAffidavit'
-const logger = require('../../logger/logger')
+import { basename } from 'path'
+const communicationAffidavitTemplate =
+  '../../templates/communicationAffidavitTemplate.hbs'
+
+const fileName = basename(__filename)
 
 /**
- * Class constructor used to generate form data in streaming pdf format 
+ * Class constructor used to generate form data in streaming pdf format
  * @constructor
  * @param {string} templatePath
  */
 
-function Form(templatePath) {
+class Form {
+  templatePath: string
 
-  /**
-   * Path to a template, passed in to class
-   * @public
-   * @type {string}
-   */
-
-  this.templatePath = templatePath
+  constructor(templatePath: string) {
+    this.templatePath = templatePath
+  }
 
   /**
    * Reads file given a path, returns a promise
@@ -29,11 +28,10 @@ function Form(templatePath) {
    * @returns {Promise} Promise object with file contents
    */
 
-  getFile = function(filePath) {
+  private getFile = function(filePath: string) {
     return new Promise((resolve, reject) => {
       readFile(filePath, { encoding: 'utf-8' }, (error, data) => {
-        if (error)
-          reject(`[generatePdf.js line 36] Unable to get file: ${error}`)
+        if (error) reject(`${fileName} [35]: ${error}`)
         resolve(data)
       })
     })
@@ -47,7 +45,7 @@ function Form(templatePath) {
    * @returns {function} - a handlebars function initialized with html template
    */
 
-  compile = function(template) {
+  private compile = function(template: string) {
     return handlebars.compile(template)
   }
 
@@ -59,16 +57,16 @@ function Form(templatePath) {
    * @returns {stream.Readable} - A readable stream of pdf data
    */
 
-  getPdfStreamFromHtml = async function(html) {
+  private getPdfStreamFromHtml = async function(html) {
     try {
-      const options = htmlPdf.CreateOptions = {
+      const options = (htmlPdf.CreateOptions = {
         port: 9222,
         host: process.env.CHROME_SERVER
-      }
+      })
       const pdf = await htmlPdf.create(html, options)
       return pdf.toStream()
     } catch (error) {
-      throw `[generatePdf.js: 71] Unable to generate pdf: ${error}`
+      throw `${fileName} [70]: ${error}`
     }
   }
 
@@ -82,24 +80,21 @@ function Form(templatePath) {
    * @returns {stream.Readable} - A readable stream of pdf data
    */
 
-  this.generate = async function(data) {
+  public generate = async function(data) {
     try {
       if (!data) {
         throw new Error('Data is missing')
       }
 
-      const template = await getFile(this.templatePath)
-      const injectDataIntoTemplate = compile(template)
+      const template = await this.getFile(this.templatePath)
+      const injectDataIntoTemplate = this.compile(template)
       const templateWithDataInserted = injectDataIntoTemplate(data)
-      return await getPdfStreamFromHtml(templateWithDataInserted)
-
+      return await this.getPdfStreamFromHtml(templateWithDataInserted)
     } catch (e) {
       throw e
     }
-
   }
 }
 
 export default Form
-export const CommunicationAffidavit: new Form('./src/templates/communicationAffidavit.hbs')
-export const DecisionSheet: new Form('./src/templates/decisionSheet.hbs')
+export const CommunicationAffidavit = new Form(communicationAffidavitTemplate)

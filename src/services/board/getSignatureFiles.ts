@@ -1,6 +1,9 @@
-import logger from '../../logger/logger'
 import fs from 'fs'
+import { basename } from 'path'
+import logger from '../../logger/logger'
 import getSignatureFileName from './getSignatureFileName'
+
+const fileName = basename(__filename)
 
 /**
  * A module for fetching board member signatures from the file system.
@@ -20,7 +23,7 @@ export function getSignatureFile(fileId: number): Promise<Buffer> {
     fs.readFile(fileName, (error: Error, data: Buffer) => {
       if (error) {
         reject(
-          `getSignatureFiles [23]: ${error}`
+          `${fileName} [26]: ${error}`
         )
       }
       resolve(data)

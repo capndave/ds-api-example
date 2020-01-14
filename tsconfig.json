@@ -13,7 +13,7 @@
     }
   },
   "include": [
-    "src/**/*.ts",
+    "src/**/*.ts", "tests/services/protest/deleteProtestDataFromDatabase.ts",
     // "tests/**/*.ts"
   ],
 }

@@ -1,4 +1,4 @@
-import path from 'path'
+import { join } from 'path'
 
 /**
  * Returns the path name of a file in the signatures directory 
@@ -7,8 +7,8 @@ import path from 'path'
  * @returns { string }
  */
 export default function getSignatureFileName(fileId: number): string {
-  const signatureDirectory: string = path.join(__dirname, `../../../../signatures`)
+  const signatureDirectory: string = join(__dirname, `../../../../signatures`)
   const fileName: string = `signature_${fileId}.jpg`
-  return path.join(signatureDirectory, fileName)
+  return join(signatureDirectory, fileName)
 }
 

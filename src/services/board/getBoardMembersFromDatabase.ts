@@ -1,6 +1,9 @@
 import logger from '../../logger/logger'
+import { basename } from 'path'
 import { IFullNameAndId } from '../../interfaces'
 import { ConnectionPool, IResult, TinyInt } from 'mssql'
+
+const fileName = basename(__filename)
 
 /**
  * Get the names of all board members from the database.
@@ -19,8 +22,8 @@ export async function getAllBoardMemberNamesAndIdsFromDatabase(
       .execute('ma_get_all_board_member_names_and_ids')
     return recordset
   } catch (error) {
-    logger.error(
-      `Error fetching data from database in getBoardMembersFromDatabase [23]: ${error}`
+    throw new Error(
+      `${fileName} [26]: ${error}`
     )
   }
 }

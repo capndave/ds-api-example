@@ -11,7 +11,7 @@
         resolve(fs.existsSync(fileName))
       } catch (err) {
         reject(
-          `Error checking existence of filename in ${fileName} [28]: ${err}`
+          `${fileName} [28]: ${err}`
         )
       }
     })

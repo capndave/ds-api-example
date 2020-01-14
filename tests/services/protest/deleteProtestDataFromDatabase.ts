@@ -24,7 +24,7 @@ export default async function getProtestDataFromDatabase(
       .execute('ma_delete_protest_data')
   } catch (error) {
     throw new Error(
-      `Error fetching data from database in ${fileName} [23]: ${error}`
+      `${fileName} [27]: ${error}`
     )
   }
 }

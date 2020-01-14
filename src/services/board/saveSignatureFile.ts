@@ -18,7 +18,7 @@ export default function saveSignatureFile(
   return new Promise((resolve, reject) => {
     writeFile(fileName, signature, (err: Error) => {
       if (err) {
-        reject(`Unable to write file at ${fileName} [41]: ${err}`)
+        reject(`${fileName} [21]: ${err}`)
       }
       resolve(`File written successfully to ${fileName}`)
     })
