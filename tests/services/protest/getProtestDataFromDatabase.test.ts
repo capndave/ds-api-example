@@ -23,6 +23,7 @@ describe('the getProtestDataFromDatabase function', () => {
         2019,
         pool
       )
+      console.log(recordset)
       expect(recordset[0].hasOwnProperty('prop_val_yr')).toBe(true)
     } catch (e) {
       throw e

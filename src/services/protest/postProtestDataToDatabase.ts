@@ -25,7 +25,7 @@ export default async function postProtestDataToDatabase(
       .input('late_protest_denial_reason', mssql.VarChar(25), input.late_protest_denial_reason)
       .input('withdrawn', mssql.Int, input.withdrawn)
       .input('dismissed', mssql.Int, input.dismissed)
-      .input('prot_affidavit_testimony_recieved', mssql.Int, input.prot_affidavit_testimony_recieved)
+      .input('affidavit', mssql.Int, input.affidavit)
       .input('moved_to_informal', mssql.Int, input.moved_to_informal)
       .input('phone_hearing', mssql.Int, input.phone_hearing)
       .input('code_25_25_c', mssql.Int, input.code_25_25_c)
