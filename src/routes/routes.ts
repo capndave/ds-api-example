@@ -1,13 +1,13 @@
 import express from 'express'
 const router = express.Router()
-import logger from '../logger/logger'
 import {
     getPropIdsInPanel,
     getBoardMembers,
     getBoardMemberNamesAndSignaturesForPanel,
     postBoardMemberNamesAndSignatures,
     rootController,
-    getProtestYears
+    getProtestYears,
+    getProtestData
 } from '../controllers'
 
 /* GET */
@@ -17,7 +17,8 @@ router.get('/board/members', getBoardMembers)
 router.get('/board/member/namesAndSignatures/:panel', getBoardMemberNamesAndSignaturesForPanel)
 router.post('/board/member/namesAndSignatures', postBoardMemberNamesAndSignatures)
 router.get('/protest/years/:propId', getProtestYears)
-// router.get('/protest/data/:propId', protestController.getProtestData)
+router.get('/protest/data/:propId/:year', getProtestData)
+router.get('/protest/data/:propId/:year', getProtestData)
 
 // router.get('/getExpectedBoardMemberNamesAndSignatures', boardMemberController.getBoardMembers)
 
