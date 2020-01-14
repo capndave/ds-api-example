@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "copy-pages": "cp -r ./src/pages/* ./dist/pages",
+    "copy-pages": "mkdir ./dist/pages && cp -r ./src/pages/* ./dist/pages/",
     "document": "typedoc --out docs /src",
     "watch-ts": "tsc -w",
     "watch-node": "nodemon dist/index.js",
