@@ -1,13 +1,15 @@
 import express from 'express'
 const router = express.Router()
 import {
-    getPropIdsInPanel,
     getBoardMembers,
     getBoardMemberNamesAndSignaturesForPanel,
-    postBoardMemberNamesAndSignatures,
-    rootController,
+    getForms,
+    getPropIdsInPanel,
     getProtestYears,
-    getProtestData
+    getProtestData,
+    postBoardMemberNamesAndSignatures,
+    postIntermediateFormsData,
+    rootController,
 } from '../controllers'
 
 /* GET */
@@ -18,8 +20,8 @@ router.get('/board/member/namesAndSignatures/:panel', getBoardMemberNamesAndSign
 router.post('/board/member/namesAndSignatures', postBoardMemberNamesAndSignatures)
 router.get('/protest/years/:propId', getProtestYears)
 router.get('/protest/data/:propId/:year', getProtestData)
-router.get('/protest/data/:propId/:year', getProtestData)
-router.get('/forms/:propId/:year', getForms)
+// router.get('/forms/:propId/:year', getForms)
+router.post('/forms/data/intermediate/:propId/:year', postIntermediateFormsData)
 
 // router.get('/getExpectedBoardMemberNamesAndSignatures', boardMemberController.getBoardMembers)
 

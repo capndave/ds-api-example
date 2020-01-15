@@ -1,6 +1,8 @@
 import { Request, Response } from 'express'
+import { Duplex } from 'stream'
 import { ConnectionPool } from 'mssql'
-import { IFullNameAndId } from '../interfaces'
+import { FormData } from '../models'
+
 import {
   CommunicationAffidavit,
   DecisionSheet
@@ -25,17 +27,23 @@ export async function getForms(req: Request, res: Response) {
   const propId: number = parseInt(req.params.propId)
   const year: number = parseInt(req.params.year)
   const pool: ConnectionPool = req.app.locals.pool
-  class FormData {
-      prop_id: number,
-      prop_val_yr: number
-
-      constructor(input: any) {
-          this.prop_id = input.propId
-          this.prop_val_yr = input.prop_val_yr
-      }
-  }
   const data = new FormData(req.params)
+
   const forms: any = await DecisionSheet.generate(data)
   console.log(forms)
-//   res.send(namesAndIds).status(200)
+  //   res.send(namesAndIds).status(200)
+}
+
+export async function postIntermediateFormsData(req: Request, res: Response) {it
+    console.log('in postIntermediateFormsData function')
+  const propId: number = parseInt(req.params.propId)
+  const year: number = parseInt(req.params.year)
+  const pool: ConnectionPool = req.app.locals.pool
+
+  console.log(req.params)
+
+  const data = new FormData(req.params)
+  const decisionSheetStream: Duplex = await DecisionSheet.generate(data)
+  res.send(decisionSheetStream).status(200)
+
 }

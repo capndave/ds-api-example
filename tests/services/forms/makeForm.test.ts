@@ -1,5 +1,5 @@
 const stream = require('stream')
-const { Form } = require('../../../src/services/makeForm/makeForm')
+const { Form } = require('../../../src/services/form/makeForm')
 const templatePath = './src/templates/testTemplate.hbs'
 const nonexistantPath = './src/templates/nonexistantTemplate.hbs'
 
