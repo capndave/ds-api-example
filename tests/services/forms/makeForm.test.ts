@@ -1,5 +1,5 @@
-const stream = require('stream')
-const { Form } = require('../../../src/services/form/makeForm')
+import stream from 'stream'
+import Form from '../../../src/services/forms/makeForm'
 const templatePath = './src/templates/testTemplate.hbs'
 const nonexistantPath = './src/templates/nonexistantTemplate.hbs'
 
@@ -28,4 +28,5 @@ describe('the generate method', () => {
     }
     return expect(testForm.generate(data)).rejects.toMatch(/ENOENT/)
   })
+
 })

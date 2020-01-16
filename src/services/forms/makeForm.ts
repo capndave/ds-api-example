@@ -1,11 +1,10 @@
-import htmlPdf from 'html-pdf-chrome'
+import * as htmlPdf from 'html-pdf-chrome'
 import handlebars from 'handlebars'
 import { readFile } from 'fs'
-import { basename } from 'path'
-const communicationAffidavitTemplate =
-  '../../templates/communicationAffidavitTemplate.hbs'
-const decisionSheetTemplate =
-  '../../templates/decisionSheetTemplate.hbs'
+import { basename, join } from 'path'
+const communicationAffidavitTemplate = 
+  '../../templates/communicationAffidavit.hbs'
+const decisionSheetTemplate = join(__dirname, '../../templates/decisionSheet.hbs')
 
 const fileName = basename(__filename)
 
@@ -61,12 +60,13 @@ class Form {
 
   private getPdfStreamFromHtml = async function(html: string) {
     try {
-      const options = ((htmlPdf as any).CreateOptions = {
+      const options: htmlPdf.CreateOptions = {
         port: 9222,
         host: process.env.CHROME_SERVER
-      })
+      }
       const pdf = await htmlPdf.create(html, options)
       return pdf.toStream()
+      
     } catch (error) {
       throw `${fileName} [70]: ${error}`
     }
@@ -85,7 +85,7 @@ class Form {
   public generate = async function(data: any) {
     try {
       if (!data) {
-        throw new Error('Data is missing')
+        throw new Error(`${fileName} [87]: Data is missing`)
       }
 
       const template = await this.getFile(this.templatePath)
