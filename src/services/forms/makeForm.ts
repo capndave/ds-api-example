@@ -68,7 +68,7 @@ class Form {
       return pdf.toStream()
       
     } catch (error) {
-      throw `${fileName} [70]: ${error}`
+      throw `${fileName} [71]: ${error}`
     }
   }
 
@@ -87,7 +87,6 @@ class Form {
       if (!data) {
         throw new Error(`${fileName} [87]: Data is missing`)
       }
-
       const template = await this.getFile(this.templatePath)
       const injectDataIntoTemplate = this.compile(template)
       const templateWithDataInserted = injectDataIntoTemplate(data)

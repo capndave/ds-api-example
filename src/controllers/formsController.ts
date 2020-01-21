@@ -34,10 +34,9 @@ export async function getForms(req: Request, res: Response) {
     const data = new FormData(req.params)
 
     const forms: any = await DecisionSheet.generate(data)
-    console.log(forms)
-    //   res.send(namesAndIds).status(200)
-  } catch (e) {
-    logger.error(`${fileName} [40]: ${e}`)
+    res.send(forms).status(200)
+  } catch (err) {
+    logger.error(`${fileName} [39]: ${err}`)
   }
 }
 
@@ -47,13 +46,10 @@ export async function postIntermediateFormsData(req: Request, res: Response) {
     const propId: number = parseInt(req.params.propId)
     const year: number = parseInt(req.params.year)
     const pool: ConnectionPool = req.app.locals.pool
-
-    console.log(req.params)
-
     const data = new FormData(req.params)
     const decisionSheetStream: Duplex = await DecisionSheet.generate(data)
     res.send(decisionSheetStream).status(200)
   } catch (e) {
-    logger.error(`${fileName} [57]: ${e}`)
+    logger.error(`${fileName} [56]: ${e}`)
   }
 }
