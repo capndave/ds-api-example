@@ -33,10 +33,26 @@ export async function getForms(req: Request, res: Response) {
     const pool: ConnectionPool = req.app.locals.pool
     const data = new FormData(req.params)
 
-    const forms: any = await DecisionSheet.generate(data)
+    const forms: any = await DecisionSheet.pdf(data)
     res.send(forms).status(200)
   } catch (err) {
     logger.error(`${fileName} [39]: ${err}`)
+  }
+}
+
+export async function getCommunicationAffidavit(req: Request, res: Response) {
+  try {
+    console.log('Inside getCommunicationAffidavit')
+    const propId: number = parseInt(req.params.propId)
+    const year: number = parseInt(req.params.year)
+    const pool: ConnectionPool = req.app.locals.pool
+    const data = new FormData(req.params)
+    console.log(data)
+    const forms: any = await CommunicationAffidavit.html(data)
+    console.log(forms)
+    res.send(forms).status(200)
+  } catch (err) {
+    logger.error(`${fileName} [53]: ${err}`)
   }
 }
 
@@ -47,7 +63,7 @@ export async function postIntermediateFormsData(req: Request, res: Response) {
     const year: number = parseInt(req.params.year)
     const pool: ConnectionPool = req.app.locals.pool
     const data = new FormData(req.params)
-    const decisionSheetStream: Duplex = await DecisionSheet.generate(data)
+    const decisionSheetStream: Duplex = await DecisionSheet.pdf(data)
     res.send(decisionSheetStream).status(200)
   } catch (e) {
     logger.error(`${fileName} [56]: ${e}`)

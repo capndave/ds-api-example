@@ -2,11 +2,9 @@ import * as htmlPdf from 'html-pdf-chrome'
 import handlebars from 'handlebars'
 import { readFile } from 'fs'
 import { basename, join } from 'path'
-const communicationAffidavitTemplate = 
-  '../../templates/communicationAffidavit.hbs'
-const decisionSheetTemplate = join(__dirname, '../../templates/decisionSheet.hbs')
-
 const fileName = basename(__filename)
+const communicationAffidavitTemplate = join(__dirname,  '../../templates/communicationAffidavit.hbs')
+const decisionSheetTemplate = join(__dirname, '../../templates/decisionSheet.hbs')
 
 /**
  * Class constructor used to generate form data in streaming pdf format
@@ -82,7 +80,7 @@ class Form {
    * @returns {stream.Readable} - A readable stream of pdf data
    */
 
-  public generate = async function(data: any) {
+  public pdf = async function(data: any) {
     try {
       if (!data) {
         throw new Error(`${fileName} [87]: Data is missing`)
@@ -95,6 +93,21 @@ class Form {
       throw e
     }
   }
+  
+  public html = async function(data: any) {
+    try {
+      if (!data) {
+        throw new Error(`${fileName} [100]: Data is missing`)
+      }
+      const template = await this.getFile(this.templatePath)
+      const injectDataIntoTemplate = this.compile(template)
+      const templateWithDataInserted = injectDataIntoTemplate(data)
+      return templateWithDataInserted
+    } catch (e) {
+      throw e
+    }
+  }
+
 }
 
 export default Form

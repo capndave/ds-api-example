@@ -7,6 +7,7 @@ import {
     getPropIdsInPanel,
     getProtestYears,
     getProtestData,
+    getCommunicationAffidavit,
     postBoardMemberNamesAndSignatures,
     postIntermediateFormsData,
     rootController,
@@ -22,6 +23,7 @@ router.get('/protest/years/:propId', getProtestYears)
 router.get('/protest/data/:propId/:year', getProtestData)
 // router.get('/forms/:propId/:year', getForms)
 router.post('/forms/data/intermediate/:propId/:year', postIntermediateFormsData)
+router.get('/test/affidavit/:propId/:prop_val_yr', getCommunicationAffidavit)
 
 // router.get('/getExpectedBoardMemberNamesAndSignatures', boardMemberController.getBoardMembers)
 
