@@ -1,25 +1,144 @@
 <!DOCTYPE html>
-	<html dir="ltr" lang="en">
-	    <head>
-            <meta charset="UTF-8">
-            <title>ARB Communication Affidavit</title>
-            <style>
-                body {
-                font-family: "Times New Roman", Times, serif;
-                height: 11in;
-                width: 8.5in;
-                padding: .25in;
-                display: flex;
-                flex-direction: column;
-                font-size: 15px;
-                }
-            </style>
-        </head>
-        <body>
-            <main>
-                TEST
-                {{ panelChairName }}
-                <img src="{{{ panelChairSignature }}}">
-            </main>
-        </body>
-    </html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ARB Communication Affidavit</title>
+    <style>
+      /* Define page size */
+      body {
+        width: 8.5in;
+        height: 10.5in;
+        padding: 0;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        font-size: 17px;
+      }
+      #footer {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+      }
+      .font-size-12 {
+        font-size: 12px;
+      }
+      main {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin: 0.25in;
+        height: 100%;
+      }
+      .margin-bottom-0 {
+        margin-bottom: 0;
+      }
+      .margin-top-0 {
+        margin-top: 0;
+      }
+      .margin-top-minus-6 {
+        margin-top: -6px;
+      }
+      #officer-signature {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+      }
+      #signature-grid {
+        display: grid;
+        grid-gap: 1rem;
+        grid-template-columns: 1fr 2fr;
+      }
+      .text-align-center {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body style="-webkit-print-color-adjust: exact;">
+    <main>
+      <section>
+        <h1 class="margin-top-0 text-align-center">COMMUNICATION AFFIDAVIT</h1>
+        <h3 class="margin-bottom-0">
+          TRAVIS APPRAISAL REVIEW BOARD<br />
+          STATE OF TEXAS<br />
+          COUNTY OF TRAVIS
+        </h3>
+      </section>
+      <section class="font-size-12">
+        Note: This form is for use by Appraisal Review Board members to affirm
+        that the members have not communicated with another person in violation
+        of the Texas Property Tax Code section 41.66(f).
+      </section>
+      <section>
+        <p class="margin-top-0">
+          Before me, the undersigned authority, on this day personally appeared
+          the members of Travis Appraisal Review Board whose signatures appear
+          below, who, being by me duly sworn, on oath deposed and said:
+        </p>
+        <p>
+          "This affidavit pertains to all protests, motions, and properties
+          brought before this panel on this day."
+        </p>
+        <p class="margin-bottom-0">
+          "I have not communicated with another person about the evidence,
+          arguments, facts, merits or any other matters related tot he property
+          owner's protest, nor have I communicated with another person about the
+          property that is the subject of this protest/motion, excluding cases
+          where the property was used as a part of a sample or compared with
+          other properties in another proceeding before the board, and excluding
+          instances in which I was expressly permitted under the Texas Property
+          Tax Code, Chapter 41, to communicate with the board or another person
+          about the property owner's protest or the property under
+          protest/motion."
+        </p>
+      </section>
+      <section>
+        Witness my hand, on ____________ day of _________________, 20______.
+      </section>
+      <section id="signature-grid">
+        <div>Panel Chair:</div>
+        <div>
+          Printed Name: <u>{{ full_name }}</u>
+        </div>
+        <div></div>
+        <div class="min-height-36">
+          Signature: <u>{{ signature }}</u>
+        </div>
+        <div>Member:</div>
+        <div>
+          Printed Name: <u>{{ full_name }}</u>
+        </div>
+        <div></div>
+        <div>
+          Signature: <u>{{ signature }}</u>
+        </div>
+        <div>Member:</div>
+        <div>
+          Printed Name: <u>{{ full_name }}</u>
+        </div>
+        <div></div>
+        <div>
+          Signature: <u>{{ signature }}</u>
+        </div>
+      </section>
+      <section id="officer-signature">
+        <div>
+          <div>{{ chair_signature }}</div>
+          <hr />
+          <div class="margin-top-minus-6">
+            Appointed Officer, Travis Appraisal Review Board
+          </div>
+        </div>
+        <div>
+          <div>{{ date }}</div>
+          <hr />
+          <div class="margin-top-minus-6">
+            Date
+          </div>
+        </div>
+      </section>
+      <section id="footer" class="font-size-12">
+        <span class="">PID: {{ PID }}</span>
+        <span class="">Panel: {{ panel }}</span>
+      </section>
+    </main>
+  </body>
+</html>
