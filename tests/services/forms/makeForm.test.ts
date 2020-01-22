@@ -10,14 +10,14 @@ describe('the templatePath parameter', () => {
   })
 })
 
-describe('the generate method', () => {
+describe('the pdf method', () => {
 
   it('resolves to a read stream', async () => {
     const testForm = new Form(templatePath)
     const data = {
       data: 'test'
     }
-    const result = await testForm.generate(data)
+    const result = await testForm.pdf(data)
     expect(result instanceof stream.Readable).toBe(true)
   })
 
@@ -26,7 +26,28 @@ describe('the generate method', () => {
     const data = {
       data: 'test'
     }
-    return expect(testForm.generate(data)).rejects.toMatch(/ENOENT/)
+    return expect(testForm.pdf(data)).rejects.toMatch(/ENOENT/)
+  })
+
+})
+
+describe.only('the html method', () => {
+
+  it('resolves to an html stream', async () => {
+    const testForm = new Form(templatePath)
+    const data = {
+      data: 'test'
+    }
+    const result = await testForm.html(data)
+    expect(result).toMatch('<div>')
+  })
+
+  it('passes an ENOENT error if an invalid path was fed to class constructor', () => {
+    const testForm = new Form(nonexistantPath)
+    const data = {
+      data: 'test'
+    }
+    return expect(testForm.pdf(data)).rejects.toMatch(/ENOENT/)
   })
 
 })
